@@ -416,7 +416,7 @@
         %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
     / add something modal
     #modal_add.modal.hide
-      %form#modal_addform.form-horizontal{:action => "add.php"}
+      %form#modal_addform.form-horizontal{:action => "places"}
         .modal-header
           %button.close{"data-dismiss" => "modal", :type => "button"} ×
           %h3 Add Something!
@@ -488,7 +488,7 @@
             url = $form.attr( 'action' );
 
         // send data and get results
-        $.post( url, { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description },
+        $.post( url, { place: { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description } },
           function( data ) {
             var content = $( data ).find( '#content' );
             

@@ -1,7 +1,16 @@
 class PlacesController < InheritedResources::Base
 
+  def create
+    @place = Place.new params[:place]
+    if @place.save!
+      respond_to do |format|
+        format.html { render text: "success" }
+      end
+    end
+  end
+
   def map
-    # For the love of all that is Ruby, CLEAN THIS SHIT UP!
+    #TODO: For the love of all that is Ruby, CLEAN THIS SHIT UP!
 
     @types = [['startup', 'Startups'],
               ['accelerator', 'Accelerators'],
