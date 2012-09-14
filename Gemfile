@@ -6,6 +6,7 @@ group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
+  gem "twitter-bootstrap-rails"
 end
 
 group :development do
@@ -29,6 +30,7 @@ end
 
 group :development, :test do
   gem "rspec-rails"
+  gem "thin"
 end
 
 gem 'jquery-rails'
@@ -38,12 +40,12 @@ gem "simple_form"
 
 gem "mongoid"
 gem "bson_ext"
-gem "thin"
 
 gem "devise"
 gem "rails_admin"
 
 gem "inherited_resources"
+gem "gon"
 
 #gem 'gmaps4rails'
 #gem 'mongoid_geospatial'
