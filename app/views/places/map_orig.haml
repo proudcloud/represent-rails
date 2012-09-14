@@ -1,0 +1,537 @@
+
+<?php include "header.php";
+
+?>
+!!!
+%html
+  %head
+ 
+<!--       This site was based on the Represent.LA project by:
+      \- Alex Benzer (@abenzer)
+      \- Tara Tiger Brown (@tara)
+      \- Sean Bonner (@seanbonner)
+ -->      
+<!--       Create a map for your startup community!
+      https://github.com/abenzer/represent-map
+ -->    %title represent.la - map of the Los Angeles startup community
+    %meta{:content => "width=device-width, initial-scale=1.0, user-scalable=no", :name => "viewport"}
+      %meta{:charset => "UTF-8"}
+        %link{:href => "http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700|Open+Sans:400,700", :rel => "stylesheet", :type => "text/css"}
+          %link{:href => "./bootstrap/css/bootstrap.css", :rel => "stylesheet", :type => "text/css"}/
+          %link{:href => "./bootstrap/css/bootstrap-responsive.css", :rel => "stylesheet", :type => "text/css"}/
+          %link{:href => "map.css?nocache=289671982568", :rel => "stylesheet", :type => "text/css"}/
+          %link{:href => "mobile.css", :media => "only screen and (max-device-width: 480px)", :rel => "stylesheet", :type => "text/css"}/
+          %script{:charset => "utf-8", :src => "./scripts/jquery-1.7.1.js", :type => "text/javascript"}
+          %script{:charset => "utf-8", :src => "./bootstrap/js/bootstrap.js", :type => "text/javascript"}
+          %script{:charset => "utf-8", :src => "./bootstrap/js/bootstrap-typeahead.js", :type => "text/javascript"}
+          %script{:src => "https://maps.googleapis.com/maps/api/js?sensor=false", :type => "text/javascript"}
+          %script{:src => "./scripts/label.js", :type => "text/javascript"}
+          :javascript
+            var map;
+            var infowindow = null;
+            var gmarkers = [];
+            var markerTitles =[];
+            var highestZIndex = 0;  
+            var agent = "default";
+            var zoomControl = true;
+
+
+            // detect browser agent
+            $(document).ready(function(){
+              if(navigator.userAgent.toLowerCase().indexOf("iphone") > -1 || navigator.userAgent.toLowerCase().indexOf("ipod") > -1) {
+                agent = "iphone";
+                zoomControl = false;
+              }
+              if(navigator.userAgent.toLowerCase().indexOf("ipad") > -1) {
+                agent = "ipad";
+                zoomControl = false;
+              }
+            }); 
+            
+
+            // resize marker list onload/resize
+            $(document).ready(function(){
+              newHeight = $('html').height() - $('#menu > .wrapper').height();
+              $('#list').css('height', newHeight + "px"); 
+            });
+            $(window).resize(function() {
+              resizeList();
+            });
+            
+            // resize marker list to fit window
+            function resizeList() {
+              newHeight = $('html').height() - $('#menu > .wrapper').height();
+              $('#list').css('height', newHeight + "px"); 
+            }
+
+
+            // initialize map
+            function initialize() {
+              // set map styles
+              var mapStyles = [
+               {
+                  featureType: "road",
+                  elementType: "geometry",
+                  stylers: [
+                    { hue: "#8800ff" },
+                    { lightness: 100 }
+                  ]
+                },{
+                  featureType: "road",
+                  stylers: [
+                    { visibility: "on" },
+                    { hue: "#91ff00" },
+                    { saturation: -62 },
+                    { gamma: 1.98 },
+                    { lightness: 45 }
+                  ]
+                },{
+                  featureType: "water",
+                  stylers: [
+                    { hue: "#005eff" },
+                    { gamma: 0.72 },
+                    { lightness: 42 }
+                  ]
+                },{
+                  featureType: "transit.line",
+                  stylers: [
+                    { visibility: "off" }
+                  ]
+                },{
+                  featureType: "administrative.locality",
+                  stylers: [
+                    { visibility: "on" }
+                  ]
+                },{
+                  featureType: "administrative.neighborhood",
+                  elementType: "geometry",
+                  stylers: [
+                    { visibility: "simplified" }
+                  ]
+                },{
+                  featureType: "landscape",
+                  stylers: [
+                    { visibility: "on" },
+                    { gamma: 0.41 },
+                    { lightness: 46 }
+                  ]
+                },{
+                  featureType: "administrative.neighborhood",
+                  elementType: "labels.text",
+                  stylers: [
+                    { visibility: "on" },
+                    { saturation: 33 },
+                    { lightness: 20 }
+                  ]
+                }
+              ];
+
+              // set map options
+              var myOptions = {
+                zoom: 12,
+                //minZoom: 10,
+                center: new google.maps.LatLng(34.034453,-118.341293),
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+                panControl: false,
+                streetViewControl: false,
+                mapTypeControl: false,
+                zoomControl: zoomControl,
+                styles: mapStyles,
+                zoomControlOptions: {
+                  style: google.maps.ZoomControlStyle.SMALL,
+                  position: google.maps.ControlPosition.TOP_LEFT
+                }
+              };
+              map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+              zoomLevel = map.getZoom();
+
+              // prepare infowindow
+              infowindow = new google.maps.InfoWindow({
+                content: "holding..."
+              });
+
+              // only show marker labels if zoomed in
+              google.maps.event.addListener(map, 'zoom_changed', function() {
+                zoomLevel = map.getZoom();
+                if(zoomLevel <= 15) {
+                  $(".marker_label").css("display", "none");
+                } else {
+                  $(".marker_label").css("display", "inline");
+                }
+              });
+
+              // markers array: name, type (icon), lat, long, description, uri, address
+              markers = new Array();
+              
+
+              // add markers
+              jQuery.each(markers, function(i, val) {
+                infowindow = new google.maps.InfoWindow({
+                  content: ""
+                });
+
+                // offset latlong ever so slightly to prevent marker overlap
+                rand_x = Math.random();
+                rand_y = Math.random();
+                val[2] = parseFloat(val[2]) + parseFloat(parseFloat(rand_x) / 6000);
+                val[3] = parseFloat(val[3]) + parseFloat(parseFloat(rand_y) / 6000);
+
+                // show smaller marker icons on mobile
+                if(agent == "iphone") {
+                  var iconSize = new google.maps.Size(16,19);
+                } else {
+                  iconSize = null;
+                }
+
+                // build this marker
+                var markerImage = new google.maps.MarkerImage("./images/icons/"+val[1]+".png", null, null, null, iconSize);
+                var marker = new google.maps.Marker({
+                  position: new google.maps.LatLng(val[2],val[3]),
+                  map: map,
+                  title: '',
+                  clickable: true,
+                  infoWindowHtml: '',
+                  zIndex: 10 + i,
+                  icon: markerImage
+                });
+                marker.type = val[1];
+                gmarkers.push(marker);
+
+                // add marker hover events (if not viewing on mobile)
+                if(agent == "default") {
+                  google.maps.event.addListener(marker, "mouseover", function() {
+                    this.old_ZIndex = this.getZIndex(); 
+                    this.setZIndex(9999); 
+                    $("#marker"+i).css("display", "inline");
+                    $("#marker"+i).css("z-index", "99999");
+                  });
+                  google.maps.event.addListener(marker, "mouseout", function() { 
+                    if (this.old_ZIndex && zoomLevel <= 15) {
+                      this.setZIndex(this.old_ZIndex); 
+                      $("#marker"+i).css("display", "none");
+                    }
+                  }); 
+                }
+
+                // format marker URI for display and linking
+                var markerURI = val[5];
+                if(markerURI.substr(0,7) != "http://") {
+                  markerURI = "http://" + markerURI; 
+                }
+                var markerURI_short = markerURI.replace("http://", "");
+                var markerURI_short = markerURI_short.replace("www.", "");
+
+                // add marker click effects (open infowindow)
+                google.maps.event.addListener(marker, 'click', function () {
+                  infowindow.setContent(
+                    ""+val[0]+""
+                    + ""+markerURI_short+""
+                    + ""+val[4]+""
+                    + ""+val[6]+""
+                  );
+                  infowindow.open(map, this);
+                });
+
+                // add marker label
+                var latLng = new google.maps.LatLng(val[2], val[3]);
+                var label = new Label({
+                  map: map,
+                  id: i
+                });
+                label.bindTo('position', marker);
+                label.set("text", val[0]);
+                label.bindTo('visible', marker);
+                label.bindTo('clickable', marker);
+                label.bindTo('zIndex', marker);
+              });
+
+
+              // zoom to marker if selected in search typeahead list
+              $('#search').typeahead({
+                source: markerTitles, 
+                onselect: function(obj) {
+                  marker_id = jQuery.inArray(obj, markerTitles);
+                  if(marker_id) {
+                    map.panTo(gmarkers[marker_id].getPosition());
+                    map.setZoom(15);
+                    google.maps.event.trigger(gmarkers[marker_id], 'click');
+                  }
+                  $("#search").val("");
+                }
+              });
+            } 
+
+
+            // zoom to specific marker
+            function goToMarker(marker_id) {
+              if(marker_id) {
+                map.panTo(gmarkers[marker_id].getPosition());
+                map.setZoom(15);
+                google.maps.event.trigger(gmarkers[marker_id], 'click');
+              }
+            }
+
+            // toggle (hide/show) markers of a given type (on the map)
+            function toggle(type) {
+              if($('#filter_'+type).is('.inactive')) {
+                show(type); 
+              } else {
+                hide(type); 
+              }
+            }
+
+            // hide all markers of a given type
+            function hide(type) {
+              for (var i=0; i<gmarkers.length; i++) {
+                if (gmarkers[i].type == type) {
+                  gmarkers[i].setVisible(false);
+                }
+              }
+              $("#filter_"+type).addClass("inactive");
+            }
+
+            // show all markers of a given type
+            function show(type) {
+              for (var i=0; i<gmarkers.length; i++) {
+                if (gmarkers[i].type == type) {
+                  gmarkers[i].setVisible(true);
+                }
+              }
+              $("#filter_"+type).removeClass("inactive");
+            }
+            
+            // toggle (hide/show) marker list of a given type
+            function toggleList(type) {
+              $("#list .list-"+type).toggle();
+            }
+
+
+            // hover on list item
+            function markerListMouseOver(marker_id) {
+              $("#marker"+marker_id).css("display", "inline");
+            }
+            function markerListMouseOut(marker_id) {
+              $("#marker"+marker_id).css("display", "none");
+            }
+
+            google.maps.event.addDomListener(window, 'load', initialize);
+              <? echo $head_html; ?>
+  %body
+    / facebook like button code
+    #fb-root
+    :javascript
+      (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=421651897866629";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));    / google map
+    #map_canvas
+    / main menu bar
+    #menu.menu
+      .wrapper
+        .logo
+          %a{:href => "./"}
+            %img{:alt => "", :src => "images/logo.png"}/
+        .blurb
+          This map was made to connect and promote the Los Angeles tech startup community.
+          Let's put LA on the map!
+        .buttons
+          %a.btn.btn-large.btn-info{"data-toggle" => "modal", :href => "#modal_info"} More Info
+          %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add Something!
+        .share
+          %a.twitter-share-button{"data-count" => "none", "data-text" => "Let's put Los Angeles startups on the map:", "data-url" => "http://www.represent.la", "data-via" => "representla", :href => "https://twitter.com/share"} Tweet
+          :javascript
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");          .fb-like{"data-font" => "arial", "data-href" => "http://www.represent.la", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "100"}
+        .blurb
+          / per our license, you may not remove this line
+          <?=$attribution?>
+        .search
+          %input#search{:autocomplete => "off", "data-provide" => "typeahead", :name => "search", :placeholder => "Type a company name...", :type => "text"}/
+      %ul#list.list
+        <?php $types = Array(
+        Array('startup', 'Startups'),
+        Array('accelerator','Accelerators'),
+        Array('incubator', 'Incubators'),
+        Array('coworking', 'Coworking'),
+        Array('investor', 'Investors'),
+        Array('service', 'Consulting')
+        );
+        if($show_events == true) {
+        $types[] = Array('event', 'Events');
+        }
+        $marker_id = 0;
+        foreach($types as $type) {
+        if($type[0] != "event") {
+        $markers = mysql_query("SELECT * FROM places WHERE approved='1' AND type='$type[0]' ORDER BY title");
+        } else {
+        $markers = mysql_query("SELECT * FROM events WHERE start_date < ".(time()+4838400)." ORDER BY id DESC");
+        }
+        $markers_total = mysql_num_rows($markers);
+        echo "
+        <li class='category?>
+        .category_item
+          .category_toggle{:id => "filter_$type[0]", :onClick => "\\\"toggle('$type[0]')\\"}
+          %a.category_info{:href => "#", :onClick => "\\\"toggleList('$type[0]');\\"}
+            %img{:alt => "", :src => "./images/icons/$type[0].png"}>/
+            $type[1]
+            %span.total ($markers_total)
+        %ul.list-items{:class => "list-$type[0]"}
+          ";
+          while($marker = mysql_fetch_assoc($markers)) {
+          echo "
+          %li{:class => "\".$marker[type].\""}
+            %a{:href => "#", :onClick => "\\\"goToMarker('\".$marker_id.\"');\\", :onMouseOut => "\\\"markerListMouseOut('\".$marker_id.\"')\\", :onMouseOver => "\\\"markerListMouseOver('\".$marker_id.\"')\\"} ".$marker[title]."
+          ";
+          $marker_id++;
+          }
+          echo "
+        ";
+        }
+        ?>
+    / main menu bar (mobile)
+    .menu_mobile
+      .wrapper
+        .buttons
+          %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add
+          %a.btn.btn-large{"data-toggle" => "modal", :href => "#modal_info"} Info
+        .logo
+          %a{:href => "http://represent.la/"}
+            %img{:alt => "RepresentLA", :src => "images/logo.png"}/
+    / more info modal
+    #modal_info.modal.hide
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h3 About This Map
+      .modal-body
+        %p
+          We built this map to connect and promote the tech startup community
+          in our beloved Los Angeles. We've seeded the map but we need
+          your help to keep it fresh. If you don't see your company,
+          please
+          = succeed "." do
+            %a{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#modal_add"} submit it here
+          Let's put LA on the map together!
+        %p
+          Questions? Feedback? Connect with us:
+          %a{:href => "http://www.twitter.com/representla", :target => "_blank"} @representla
+        %p
+          If you want to support the LA community by linking to this map from your website,
+          here are some badges you might like to use. You can also grab the
+          = succeed "." do
+            %a{:href => "./images/badges/LA-icon.ai"} LA icon AI file
+        %ul.badges
+          %li
+            %img{:alt => "", :src => "./images/badges/badge1.png"}
+          %li
+            %img{:alt => "", :src => "./images/badges/badge1_small.png"}
+          %li
+            %img{:alt => "", :src => "./images/badges/badge2.png"}
+          %li
+            %img{:alt => "", :src => "./images/badges/badge2_small.png"}
+        %p
+          This map was built with
+          %a{:href => "https://github.com/abenzer/represent-map"} RepresentMap
+          \- an open source project we started
+          to help startup communities around the world create their own maps.
+          Check out some
+          %a{:href => "http://www.represent.la/and-other-cities", :target => "_blank"} startup maps
+          built by other communities!
+      .modal-footer
+        %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
+    / add something modal
+    #modal_add.modal.hide
+      %form#modal_addform.form-horizontal{:action => "add.php"}
+        .modal-header
+          %button.close{"data-dismiss" => "modal", :type => "button"} ×
+          %h3 Add Something!
+        .modal-body
+          %p
+            Want to add your company to this map?
+            Submit it below and we'll review it ASAP.
+          #result
+          %fieldset
+            .control-group
+              %label.control-label{:for => "add_owner_name"} Your Name
+              .controls
+                %input#add_owner_name.input-xlarge{:maxlength => "100", :name => "owner_name", :type => "text"}
+            .control-group
+              %label.control-label{:for => "add_owner_email"} Your Email
+              .controls
+                %input#add_owner_email.input-xlarge{:maxlength => "100", :name => "owner_email", :type => "text"}
+            .control-group
+              %label.control-label{:for => "add_title"} Company Name
+              .controls
+                %input#add_title.input-xlarge{:maxlength => "100", :name => "title", :type => "text"}
+            .control-group
+              %label.control-label{:for => "input01"} Company Type
+              .controls
+                %select#add_type.input-xlarge{:name => "type"}
+                  %option{:value => "startup"} Startup
+                  %option{:value => "accelerator"} Accelerator
+                  %option{:value => "incubator"} Incubator
+                  %option{:value => "coworking"} Coworking
+                  %option{:value => "investor"} VC/Angel
+                  %option{:value => "service"} Consulting Firm
+            .control-group
+              %label.control-label{:for => "add_address"} Address
+              .controls
+                %input#add_address.input-xlarge{:name => "address", :type => "text"}
+                  %p.help-block
+                    Should be your
+                    = succeed "." do
+                      %b full street address (including city and zip)
+                    If it works on Google Maps, it will work here.
+            .control-group
+              %label.control-label{:for => "add_uri"} Website URL
+              .controls
+                %input#add_uri.input-xlarge{:name => "uri", :placeholder => "http://", :type => "text"}
+                  %p.help-block
+                    Should be your full URL with no trailing slash, e.g. "http://www.yoursite.com"
+            .control-group
+              %label.control-label{:for => "add_description"} Description
+              .controls
+                %input#add_description.input-xlarge{:maxlength => "150", :name => "description", :type => "text"}
+                  %p.help-block
+                    Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
+        .modal-footer
+          %button.btn.btn-primary{:type => "submit"} Submit for Review
+          %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
+    :javascript
+      // add modal form submit
+      $("#modal_addform").submit(function(event) {
+        event.preventDefault(); 
+        // get values
+        var $form = $( this ),
+            owner_name = $form.find( '#add_owner_name' ).val(),
+            owner_email = $form.find( '#add_owner_email' ).val(),
+            title = $form.find( '#add_title' ).val(),
+            type = $form.find( '#add_type' ).val(),
+            address = $form.find( '#add_address' ).val(),
+            uri = $form.find( '#add_uri' ).val(),
+            description = $form.find( '#add_description' ).val(),
+            url = $form.attr( 'action' );
+
+        // send data and get results
+        $.post( url, { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description },
+          function( data ) {
+            var content = $( data ).find( '#content' );
+            
+            // if submission was successful, show info alert
+            if(data == "success") {
+              $("#modal_addform #result").html("We've received your submission and will review it shortly. Thanks!"); 
+              $("#modal_addform #result").addClass("alert alert-info");
+              $("#modal_addform p").css("display", "none");
+              $("#modal_addform fieldset").css("display", "none");
+              $("#modal_addform .btn-primary").css("display", "none");
+              
+            // if submission failed, show error
+            } else {
+              $("#modal_addform #result").html(data); 
+              $("#modal_addform #result").addClass("alert alert-danger");
+            }
+          }
+        );
+      });
+    
