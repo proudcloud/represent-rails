@@ -1,5 +1,6 @@
 class Place
   include Mongoid::Document
+  include Geocoder::Model::Mongoid
 
   field :approved, type: Integer, default: 0
   field :title
@@ -12,4 +13,17 @@ class Place
   field :sector
   field :owner_name
   field :owner_email
+
+  field :coordinates, type: Array
+
+  validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
+
+  geocoded_by :address
+  before_save :geocode
+  before_save :plot_coordinates
+
+  def plot_coordinates
+    self.lng = self.coordinates[0]
+    self.lat = self.coordinates[1]
+  end
 end

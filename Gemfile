@@ -49,4 +49,4 @@ gem "gon"
 
 #gem 'gmaps4rails'
 #gem 'mongoid_geospatial'
-#gem 'geocoder'
+gem 'geocoder'

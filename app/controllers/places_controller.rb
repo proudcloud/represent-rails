@@ -2,9 +2,13 @@ class PlacesController < InheritedResources::Base
 
   def create
     @place = Place.new params[:place]
-    if @place.save!
+    if @place.save
       respond_to do |format|
         format.html { render text: "success" }
+      end
+    else
+      respond_to do |format|
+        format.html { render text: "Please fill out all fields" }
       end
     end
   end
@@ -20,9 +24,8 @@ class PlacesController < InheritedResources::Base
               ['service', 'Consulting']]
 
     gon.places = []
-    place = []
 
-    Place.all.each do |value|
+    Place.where(approved: 1).order_by(:title.asc).each do |value|
       place = ["#{value.title}", 
               "#{value.type}",
               "#{value.lat}",
