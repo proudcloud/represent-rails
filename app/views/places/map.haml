@@ -350,6 +350,7 @@
           %input#search{:autocomplete => "off", "data-provide" => "typeahead", :name => "search", :placeholder => "Type a company name...", :type => "text"}/
 
       %ul#list.list
+        - index = 0
         - @types.each do |type|
           - @markers = Place.where(approved: 1, type: type[0]).to_a
           %li.category
@@ -360,9 +361,10 @@
                 #{type[1]}
                 %span.total (#{@markers.length})
             %ul.list-items{:class => "list-#{type[0]}"}
-              - @markers.each_with_index do |marker, i|
+              - @markers.each do |marker|
                 %li{:class => "#{marker.type}"}
-                  %a{:href => "#", :onClick => "goToMarker('#{i}')", :onMouseOut => "markerListMouseOut('#{i}')", :onMouseOver => "markerListMouseOver('#{i}')"} #{marker.title}
+                  %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} #{marker.title}
+                  - index+=1
 
     / main menu bar (mobile)
     .menu_mobile
