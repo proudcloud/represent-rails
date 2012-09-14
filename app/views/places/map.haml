@@ -160,7 +160,6 @@
               markers = new Array();
 
               // DEFINE MARKER HERE
-              console.log(gon.places);
 
               markers = gon.places
 
@@ -196,6 +195,8 @@
                 });
                 marker.type = val[1];
                 gmarkers.push(marker);
+
+                markerTitles.push(val[0]); // ENABLE TYPEAHEAD SEARCH
 
                 // add marker hover events (if not viewing on mobile)
                 if(agent == "default") {
@@ -362,7 +363,6 @@
                 %span.total (#{@markers.length})
             %ul.list-items{:class => "list-#{type[0]}"}
               - @markers.each do |marker|
-                = binding.pry
                 %li{:class => "#{marker.type}"}
                   %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} #{marker.title}
                 - index+=1

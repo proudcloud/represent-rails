@@ -14,7 +14,7 @@ class PlacesController < InheritedResources::Base
   end
 
   def map
-    #TODO: For the love of all that is Ruby, CLEAN THIS SHIT UP!
+    #TODO: FFS, CLEAN THIS SHIT UP!
 
     @types = [['startup', 'Startups'],
               ['accelerator', 'Accelerators'],
@@ -25,15 +25,17 @@ class PlacesController < InheritedResources::Base
 
     gon.places = []
 
-    Place.where(approved: 1).order_by(:title.asc).each do |value|
-      place = ["#{value.title}", 
-              "#{value.type}",
-              "#{value.lat}",
-              "#{value.lng}", 
-              "#{value.description}", 
-              "#{value.uri}", 
-              "#{value.address}"]
-      gon.places.push place
+    @types.each do |type|
+      Place.where(approved: 1, type: type[0]).order_by(:title.asc).each do |value|
+        place = ["#{value.title}", 
+                "#{value.type}",
+                "#{value.lat}",
+                "#{value.lng}", 
+                "#{value.description}", 
+                "#{value.uri}", 
+                "#{value.address}"]
+        gon.places.push place
+      end
     end
 
   end
