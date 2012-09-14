@@ -1,5 +1,5 @@
 /* resets */
-
+*
 {
   border: 0px;
   padding: 0px;
@@ -235,7 +235,7 @@ html, body, #map_canvas
 }
 .list .category .category_toggle
 {
-  background-image: url("./images/icons/check.png");
+  background-image: url("/images/icons/check.png");
   background-position: center center;
   background-repeat: no-repeat;
   width: 30px;

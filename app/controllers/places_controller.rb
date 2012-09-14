@@ -1,6 +1,14 @@
 class PlacesController < InheritedResources::Base
 
   def map
+    # For the love of all that is Ruby, CLEAN THIS SHIT UP!
+
+    @types = [['startup', 'Startups'],
+              ['accelerator', 'Accelerators'],
+              ['incubator', 'Incubators'],
+              ['coworking', 'Coworking'],
+              ['investor', 'Investors'],
+              ['service', 'Consulting']]
 
     gon.places = []
     place = []

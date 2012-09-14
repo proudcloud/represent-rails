@@ -124,9 +124,9 @@
 
               // set map options
               var myOptions = {
-                zoom: 12,
+                zoom: 6,
                 //minZoom: 10,
-                center: new google.maps.LatLng(14.606661,121.081652),
+                center: new google.maps.LatLng(13,124), // Adjust to center map
                 mapTypeId: google.maps.MapTypeId.ROADMAP,
                 panControl: false,
                 streetViewControl: false,
@@ -224,10 +224,10 @@
                 // add marker click effects (open infowindow)
                 google.maps.event.addListener(marker, 'click', function () {
                   infowindow.setContent(
-                    ""+val[0]+""
-                    + ""+markerURI_short+""
-                    + ""+val[4]+""
-                    + ""+val[6]+""
+                    "<div class='marker_title'>"+val[0]+"</div>"
+                    + "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>"
+                    + "<div class='marker_desc'>"+val[4]+"</div>"
+                    + "<div class='marker_address'>"+val[6]+"</div>"
                   );
                   infowindow.open(map, this);
                 });
@@ -266,7 +266,7 @@
             function goToMarker(marker_id) {
               if(marker_id) {
                 map.panTo(gmarkers[marker_id].getPosition());
-                map.setZoom(15);
+                map.setZoom(17);
                 google.maps.event.trigger(gmarkers[marker_id], 'click');
               }
             }
@@ -349,7 +349,163 @@
         .search
           %input#search{:autocomplete => "off", "data-provide" => "typeahead", :name => "search", :placeholder => "Type a company name...", :type => "text"}/
 
+      %ul#list.list
+        - @types.each do |type|
+          - @markers = Place.where(approved: 1, type: type[0]).to_a
+          %li.category
+            .category_item
+              .category_toggle{:id => "filter_#{type[0]}", :onClick => "toggle('#{type[0]}')"}
+              %a.category_info{:href => "#", :onClick => "toggleList('#{type[0]}')"}
+                %img{:alt => "", :src => "./images/icons/#{type[0]}.png"}>/
+                #{type[1]}
+                %span.total (#{@markers.length})
+            %ul.list-items{:class => "list-#{type[0]}"}
+              - @markers.each_with_index do |marker, i|
+                %li{:class => "#{marker.type}"}
+                  %a{:href => "#", :onClick => "goToMarker('#{i}')", :onMouseOut => "markerListMouseOut('#{i}')", :onMouseOver => "markerListMouseOver('#{i}')"} #{marker.title}
 
+    / main menu bar (mobile)
+    .menu_mobile
+      .wrapper
+        .buttons
+          %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add
+          %a.btn.btn-large{"data-toggle" => "modal", :href => "#modal_info"} Info
+        .logo
+          %a{:href => "http://represent.la/"}
+            %img{:alt => "RepresentLA", :src => "images/logo.png"}/
+    / more info modal
+    #modal_info.modal.hide
+      .modal-header
+        %button.close{"data-dismiss" => "modal", :type => "button"} ×
+        %h3 About This Map
+      .modal-body
+        %p
+          We built this map to connect and promote the tech startup community
+          in our beloved Los Angeles. We've seeded the map but we need
+          your help to keep it fresh. If you don't see your company,
+          please
+          = succeed "." do
+            %a{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#modal_add"} submit it here
+          Let's put LA on the map together!
+        %p
+          Questions? Feedback? Connect with us:
+          %a{:href => "http://www.twitter.com/representla", :target => "_blank"} @representla
+        %p
+          If you want to support the LA community by linking to this map from your website,
+          here are some badges you might like to use. You can also grab the
+          = succeed "." do
+            %a{:href => "./images/badges/LA-icon.ai"} LA icon AI file
+        %ul.badges
+          %li
+            %img{:alt => "", :src => "./images/badges/badge1.png"}
+          %li
+            %img{:alt => "", :src => "./images/badges/badge1_small.png"}
+          %li
+            %img{:alt => "", :src => "./images/badges/badge2.png"}
+          %li
+            %img{:alt => "", :src => "./images/badges/badge2_small.png"}
+        %p
+          This map was built with
+          %a{:href => "https://github.com/abenzer/represent-map"} RepresentMap
+          \- an open source project we started
+          to help startup communities around the world create their own maps.
+          Check out some
+          %a{:href => "http://www.represent.la/and-other-cities", :target => "_blank"} startup maps
+          built by other communities!
+      .modal-footer
+        %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
+    / add something modal
+    #modal_add.modal.hide
+      %form#modal_addform.form-horizontal{:action => "add.php"}
+        .modal-header
+          %button.close{"data-dismiss" => "modal", :type => "button"} ×
+          %h3 Add Something!
+        .modal-body
+          %p
+            Want to add your company to this map?
+            Submit it below and we'll review it ASAP.
+          #result
+          %fieldset
+            .control-group
+              %label.control-label{:for => "add_owner_name"} Your Name
+              .controls
+                %input#add_owner_name.input-xlarge{:maxlength => "100", :name => "owner_name", :type => "text"}
+            .control-group
+              %label.control-label{:for => "add_owner_email"} Your Email
+              .controls
+                %input#add_owner_email.input-xlarge{:maxlength => "100", :name => "owner_email", :type => "text"}
+            .control-group
+              %label.control-label{:for => "add_title"} Company Name
+              .controls
+                %input#add_title.input-xlarge{:maxlength => "100", :name => "title", :type => "text"}
+            .control-group
+              %label.control-label{:for => "input01"} Company Type
+              .controls
+                %select#add_type.input-xlarge{:name => "type"}
+                  %option{:value => "startup"} Startup
+                  %option{:value => "accelerator"} Accelerator
+                  %option{:value => "incubator"} Incubator
+                  %option{:value => "coworking"} Coworking
+                  %option{:value => "investor"} VC/Angel
+                  %option{:value => "service"} Consulting Firm
+            .control-group
+              %label.control-label{:for => "add_address"} Address
+              .controls
+                %input#add_address.input-xlarge{:name => "address", :type => "text"}
+                  %p.help-block
+                    Should be your
+                    = succeed "." do
+                      %b full street address (including city and zip)
+                    If it works on Google Maps, it will work here.
+            .control-group
+              %label.control-label{:for => "add_uri"} Website URL
+              .controls
+                %input#add_uri.input-xlarge{:name => "uri", :placeholder => "http://", :type => "text"}
+                  %p.help-block
+                    Should be your full URL with no trailing slash, e.g. "http://www.yoursite.com"
+            .control-group
+              %label.control-label{:for => "add_description"} Description
+              .controls
+                %input#add_description.input-xlarge{:maxlength => "150", :name => "description", :type => "text"}
+                  %p.help-block
+                    Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
+        .modal-footer
+          %button.btn.btn-primary{:type => "submit"} Submit for Review
+          %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
+    :javascript
+      // add modal form submit
+      $("#modal_addform").submit(function(event) {
+        event.preventDefault(); 
+        // get values
+        var $form = $( this ),
+            owner_name = $form.find( '#add_owner_name' ).val(),
+            owner_email = $form.find( '#add_owner_email' ).val(),
+            title = $form.find( '#add_title' ).val(),
+            type = $form.find( '#add_type' ).val(),
+            address = $form.find( '#add_address' ).val(),
+            uri = $form.find( '#add_uri' ).val(),
+            description = $form.find( '#add_description' ).val(),
+            url = $form.attr( 'action' );
 
-
-
+        // send data and get results
+        $.post( url, { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description },
+          function( data ) {
+            var content = $( data ).find( '#content' );
+            
+            // if submission was successful, show info alert
+            if(data == "success") {
+              $("#modal_addform #result").html("We've received your submission and will review it shortly. Thanks!"); 
+              $("#modal_addform #result").addClass("alert alert-info");
+              $("#modal_addform p").css("display", "none");
+              $("#modal_addform fieldset").css("display", "none");
+              $("#modal_addform .btn-primary").css("display", "none");
+              
+            // if submission failed, show error
+            } else {
+              $("#modal_addform #result").html(data); 
+              $("#modal_addform #result").addClass("alert alert-danger");
+            }
+          }
+        );
+      });
+    
