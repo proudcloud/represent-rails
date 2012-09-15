@@ -2,7 +2,7 @@ class Place
   include Mongoid::Document
   include Geocoder::Model::Mongoid
 
-  field :approved, type: Integer, default: 0
+  field :approved, type: Boolean, default: false 
   field :title
   field :type
   field :lat, type: Float, default: 0.0
