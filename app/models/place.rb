@@ -14,15 +14,12 @@ class Place
   field :owner_name
   field :owner_email
 
-  field :coordinates, type: Array
+  field :coordinates, type: Array, default: [0.0,0.0]
 
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
 
   geocoded_by :address
-  #before_save :geocode_if_required
-  before_save :ensure_country 
-  before_save :geocode
-  before_save :plot_coordinates
+  before_save :geocode_if_required
 
 
   def ensure_country
@@ -33,17 +30,19 @@ class Place
   end
 
   def plot_coordinates
-    if geocode
-      self.lng = self.coordinates[0]
-      self.lat = self.coordinates[1]
-    end
+    self.lng = self.coordinates[0]
+    self.lat = self.coordinates[1]
   end
 
   def geocode_if_required
+    ensure_country
     if self.lng.blank? || self.lat.blank?
       if geocode
         plot_coordinates
       end
+    else
+      self.coordinates[0] = self.lng
+      self.coordinates[1] = self.lat
     end
   end
 
