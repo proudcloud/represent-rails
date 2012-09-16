@@ -69,7 +69,8 @@ html, body, #map_canvas
 }
 .menu .logo
 {
-  padding: 5px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
+  text-align: center;
 }
 .menu .logo a
 {
