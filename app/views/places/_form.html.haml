@@ -31,6 +31,14 @@
               %option{:value => "coworking"} Coworking
               %option{:value => "investor"} VC/Angel
               %option{:value => "service"} Consulting Firm
+        -#
+          .control-group
+            %label.control-label{for: "add_longitude"} Coordinates
+            .controls
+              %input#add_longitude.input-medium{name: "lng", type: "text", placeholder: "Longitude"}
+              %input#add_longitude.input-medium{name: "lat", type: "text", placeholder: "Latitude"}
+              %p.help-block
+                We prefer that you enter your coordinates so we won't need to geocode your address. 
         .control-group
           %label.control-label{:for => "add_address"} Address
           .controls
@@ -40,24 +48,24 @@
                 = succeed "." do
                   %b full street address (including city and zip)
                 If it works on Google Maps, it will work here.
-          .control-group
-            %label.control-label{:for => "add_uri"} Website URL
-            .controls
-              %input#add_uri.input-xlarge{:name => "uri", :placeholder => "http://", :type => "text"}
-                %p.help-block
-                  Should be your full URL with no trailing slash, e.g. "http://www.yoursite.com"
-          .control-group
-            %label.control-label{:for => "add_description"} Description
-            .controls
-              %input#add_description.input-xlarge{:maxlength => "150", :name => "description", :type => "text"}
-                %p.help-block
-                  Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
+        .control-group
+          %label.control-label{:for => "add_uri"} Website URL
+          .controls
+            %input#add_uri.input-xlarge{:name => "uri", :placeholder => "http://", :type => "text"}
+              %p.help-block
+                Should be your full URL with no trailing slash, e.g. "http://www.yoursite.com"
+        .control-group
+          %label.control-label{:for => "add_description"} Description
+          .controls
+            %input#add_description.input-xlarge{:maxlength => "150", :name => "description", :type => "text"}
+              %p.help-block
+                Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
 
-          - if user_signed_in?
-            .control-group
-              %label.control-label{:for => "add_approval"} Approved? 
-              .controls
-                %input#add_approval.input-xlarge{name: "approved", type: "checkbox"}
+        - if user_signed_in?
+          .control-group
+            %label.control-label{:for => "add_approval"} Approved? 
+            .controls
+              %input#add_approval.input-xlarge{name: "approved", type: "checkbox"}
 
       .modal-footer
         %button.btn.btn-primary{:type => "submit"} Submit for Review

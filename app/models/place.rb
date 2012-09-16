@@ -18,17 +18,33 @@ class Place
 
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
 
-  # todo geocode by IP instead of address and only if coordinates are empty
   geocoded_by :address
+  #before_save :geocode_if_required
+  before_save :ensure_country
   before_save :geocode
   before_save :plot_coordinates
 
+
+  def ensure_country
+    if self.address.downcase.index("philippines").nil?
+      self.address << ", Philippines"
+    end
+
+  end
+
   def plot_coordinates
-    self.lng = self.coordinates[0]
-    self.lat = self.coordinates[1]
+    if geocode
+      self.lng = self.coordinates[0]
+      self.lat = self.coordinates[1]
+    end
   end
 
   def geocode_if_required
-    
+    if self.lng.blank? || self.lat.blank?
+      if geocode
+        plot_coordinates
+      end
+    end
   end
+
 end
