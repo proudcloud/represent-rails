@@ -1,3 +1,3 @@
 Geocoder.configure do |config|
-  config.lookup = :google
+  config.lookup = :yahoo
 end

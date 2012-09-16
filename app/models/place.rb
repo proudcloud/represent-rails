@@ -20,14 +20,14 @@ class Place
 
   geocoded_by :address
   #before_save :geocode_if_required
-  before_save :ensure_country
+  before_save :ensure_country 
   before_save :geocode
   before_save :plot_coordinates
 
 
   def ensure_country
     if self.address.downcase.index("philippines").nil?
-      self.address << ", Philippines"
+      self.address << ", Philippines" # we need this country user defined in the future
     end
 
   end
