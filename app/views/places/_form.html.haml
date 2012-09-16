@@ -37,7 +37,9 @@
             %input#add_latitude.input-medium{name: "lat", type: "text", placeholder: "Latitude"}
             %input#add_longitude.input-medium{name: "lng", type: "text", placeholder: "Longitude"}
             %p.help-block
-              We prefer that you enter your coordinates for accuracy. You can use Google Maps to find your location accurately. 
+              We prefer that you enter your coordinates for accuracy. You can 
+              = link_to "use Google Maps", "http://support.google.com/maps/bin/answer.py?hl=en&answer=1334236"
+              to find your coordinates. 
         .control-group
           %label.control-label{:for => "add_address"} Address
           .controls

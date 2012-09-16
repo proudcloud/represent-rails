@@ -15,34 +15,19 @@
   .modal-body
     %p
       We built this map to connect and promote the tech startup community
-      in our beloved Los Angeles. We've seeded the map but we need
+      in the Philippines. We've seeded the map but we need
       your help to keep it fresh. If you don't see your company,
       please
       = succeed "." do
         %a{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#modal_add"} submit it here
-      Let's put LA on the map together!
+      Let's put the Philippines on the map together!
     %p
       Questions? Feedback? Connect with us:
-      %a{:href => "http://www.twitter.com/representla", :target => "_blank"} @representla
+      %a{:href => "http://www.twitter.com/proudcloud", :target => "_blank"} @proudcloud
     %p
-      If you want to support the LA community by linking to this map from your website,
-      here are some badges you might like to use. You can also grab the
-      = succeed "." do
-        %a{:href => "./images/badges/LA-icon.ai"} LA icon AI file
-    %ul.badges
-      %li
-        %img{:alt => "", :src => "./images/badges/badge1.png"}
-      %li
-        %img{:alt => "", :src => "./images/badges/badge1_small.png"}
-      %li
-        %img{:alt => "", :src => "./images/badges/badge2.png"}
-      %li
-        %img{:alt => "", :src => "./images/badges/badge2_small.png"}
-    %p
-      This map was built with
+      This map was ported to Ruby on Rails by @hvictorsolis + @jayfajardo and was inspired by 
       %a{:href => "https://github.com/abenzer/represent-map"} RepresentMap
-      \- an open source project we started
-      to help startup communities around the world create their own maps.
+      \- an open source project started by @representla to help startup communities around the world create their own maps.
       Check out some
       %a{:href => "http://www.represent.la/and-other-cities", :target => "_blank"} startup maps
       built by other communities!
