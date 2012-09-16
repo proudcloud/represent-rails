@@ -52,6 +52,13 @@
               %input#add_description.input-xlarge{:maxlength => "150", :name => "description", :type => "text"}
                 %p.help-block
                   Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
+
+          - if user_signed_in?
+            .control-group
+              %label.control-label{:for => "add_description"} Approved? 
+              .controls
+                %input#add_approval.input-xlarge{name: "approved", type: "checkbox"}
+
       .modal-footer
         %button.btn.btn-primary{:type => "submit"} Submit for Review
         %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
