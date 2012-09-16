@@ -1,13 +1,3 @@
-/ main menu bar (mobile)
-.menu_mobile
-  .wrapper
-    .buttons
-      %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add
-      %a.btn.btn-large{"data-toggle" => "modal", :href => "#modal_info"} Info
-    .logo
-      %a{:href => "http://represent.ph/"}
-        %img{:alt => "RepresentLA", :src => "images/represent.png"}/
-/ more info modal
 #modal_info.modal.hide
   .modal-header
     %button.close{"data-dismiss" => "modal", :type => "button"} ×
@@ -38,5 +28,6 @@
       built by other communities!
   .modal-footer
     %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
+
 
 
