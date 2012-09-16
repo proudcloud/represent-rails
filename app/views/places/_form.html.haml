@@ -21,25 +21,25 @@
           %label.control-label{:for => "add_title"} Company Name
           .controls
             %input#add_title.input-xlarge{:maxlength => "100", :name => "title", :type => "text"}
-          .control-group
-            %label.control-label{:for => "input01"} Company Type
-            .controls
-              %select#add_type.input-xlarge{:name => "type"}
-                %option{:value => "startup"} Startup
-                %option{:value => "accelerator"} Accelerator
-                %option{:value => "incubator"} Incubator
-                %option{:value => "coworking"} Coworking
-                %option{:value => "investor"} VC/Angel
-                %option{:value => "service"} Consulting Firm
-          .control-group
-            %label.control-label{:for => "add_address"} Address
-            .controls
-              %input#add_address.input-xlarge{:name => "address", :type => "text"}
-                %p.help-block
-                  Should be your
-                  = succeed "." do
-                    %b full street address (including city and zip)
-                  If it works on Google Maps, it will work here.
+        .control-group
+          %label.control-label{:for => "input01"} Company Type
+          .controls
+            %select#add_type.input-xlarge{:name => "type"}
+              %option{:value => "startup"} Startup
+              %option{:value => "accelerator"} Accelerator
+              %option{:value => "incubator"} Incubator
+              %option{:value => "coworking"} Coworking
+              %option{:value => "investor"} VC/Angel
+              %option{:value => "service"} Consulting Firm
+        .control-group
+          %label.control-label{:for => "add_address"} Address
+          .controls
+            %input#add_address.input-xlarge{:name => "address", :type => "text"}
+              %p.help-block
+                Should be your
+                = succeed "." do
+                  %b full street address (including city and zip)
+                If it works on Google Maps, it will work here.
           .control-group
             %label.control-label{:for => "add_uri"} Website URL
             .controls
@@ -55,7 +55,7 @@
 
           - if user_signed_in?
             .control-group
-              %label.control-label{:for => "add_description"} Approved? 
+              %label.control-label{:for => "add_approval"} Approved? 
               .controls
                 %input#add_approval.input-xlarge{name: "approved", type: "checkbox"}
 
@@ -76,9 +76,10 @@
             uri = $form.find( '#add_uri' ).val(),
             description = $form.find( '#add_description' ).val(),
             url = $form.attr( 'action' );
+            approved = $form.find('#add_approval').val();
 
         // send data and get results
-        $.post( url, { place: { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description } },
+        $.post( url, { place: { owner_name: owner_name, owner_email: owner_email, title: title, type: type, address: address, uri: uri, description: description, approved: approved } },
           function( data ) {
             var content = $( data ).find( '#content' );
             
