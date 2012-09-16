@@ -38,7 +38,11 @@
           %td
             = place.owner_email
           %td
-            &nbsp;
+            = link_to place_path(place) do
+              %i.icon-search
+            = link_to edit_place_path(place) do
+              %i.icon-pencil
+            %i.icon-remove
 
 
 

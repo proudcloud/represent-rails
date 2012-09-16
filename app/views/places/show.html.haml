@@ -1,6 +1,44 @@
-%p#notice= notice
+.page-header
+  %h2
+    = @place.title
+    %small
+      &nbsp;&nbsp;&nbsp;
+      = @place.type.titleize
+    %small.pull-right
+      &nbsp;&nbsp;&nbsp;
+      = @place.status.titleize
 
 
-= link_to 'Edit', edit_place_path(@place)
-\|
-= link_to 'Back', places_path
+.pull-right
+  = link_to edit_place_path(@place) do
+    %button.btn.btn-medium.btn-primary
+      Edit
+  = link_to edit_place_path(@place) do
+    %button.btn.btn-medium
+      Delete 
+%h5
+  Description
+%p
+  = @place.description
+%br
+%h5
+  Address
+%p
+  = @place.address
+
+%br
+%h5
+  Website
+%p
+  = @place.uri
+
+%br
+%h5
+  Contact
+%p
+  = @place.owner_name
+  &nbsp;&nbsp;
+  = @place.owner_email
+
+
+

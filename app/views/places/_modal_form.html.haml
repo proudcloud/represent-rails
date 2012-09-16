@@ -1,0 +1,10 @@
+#modal_add.modal.hide
+  .modal-header
+    %button.close{"data-dismiss" => "modal", :type => "button"} ×
+    %h3 Add Something!
+  .modal-body
+    %p
+      Want to add your company to this map?
+      Submit it below and we'll review it ASAP.
+  
+    = render"form"

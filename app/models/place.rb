@@ -22,6 +22,10 @@ class Place
   before_save :geocode_if_required
 
 
+  def status
+    approved ? "Approved" : "Pending"
+  end
+
   def ensure_country
     if self.address.downcase.index("philippines").nil?
       self.address << ", Philippines" # we need this country user defined in the future
