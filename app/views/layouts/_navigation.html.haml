@@ -1,0 +1,19 @@
+=# link_to image_tag("represent.png"), root_path, :class => 'brand'
+= link_to "represent.ph", root_path, :class => 'brand'
+%ul.navbar-text.pull-right
+  - if user_signed_in?
+    Welcome
+    = "#{current_user.email}!"
+    &nbsp;|&nbsp;
+    = link_to "LOG-OUT", destroy_user_session_path, method: 'delete'
+    
+  - else
+    %li
+      = link_to('Login', new_user_session_path)
+
+%ul.nav
+  %li
+    = link_to "About", "#"
+  %li
+    = link_to "Discover", "#"
+

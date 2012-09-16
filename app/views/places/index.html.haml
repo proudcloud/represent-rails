@@ -1,17 +1,45 @@
-%h1 Listing places
+.page-header
+  %h2
+    Places
 
-%table
-  %tr
-    %th
-    %th
-    %th
+  %table.table
+    %thead
+      %th
+        Title
+      %th
+        Type
+      %th
+        Description
+      %th
+        Address
+      %th
+        URL
+      %th
+        Owner
+      %th
+        Email
+      %th
+        Actions
+    %tbody
+      - @places.each do |place|
+        %tr
+          %td
+            = place.title
+          %td
+            = place.type
+          %td
+            = place.description
+          %td
+            = place.address
+          %td
+            = place.uri
+          %td
+            = place.owner_name
+          %td
+            = place.owner_email
+          %td
+            &nbsp;
 
-  - @places.each do |place|
-    %tr
-      %td= link_to 'Show', place
-      %td= link_to 'Edit', edit_place_path(place)
-      %td= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' }
 
-%br
 
-= link_to 'New Place', new_place_path
+  

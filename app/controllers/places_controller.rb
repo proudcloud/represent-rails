@@ -1,4 +1,6 @@
 class PlacesController < InheritedResources::Base
+  before_filter :authenticate_user!, except: [:map, :create, :new]
+  layout "admin", except: [:map]
 
   def create
     @place = Place.new params[:place]
@@ -38,6 +40,11 @@ class PlacesController < InheritedResources::Base
       end
     end
 
+  end
+
+  def admin
+    @places = Place.all 
+    render "index"
   end
 
 end
