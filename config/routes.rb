@@ -5,6 +5,7 @@ RepresentPh::Application.routes.draw do
 
   match "/admin" => "places#admin"
 
+
   resources :places
   root to: "places#map" 
 end
