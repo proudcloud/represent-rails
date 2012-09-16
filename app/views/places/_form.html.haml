@@ -1,9 +1,10 @@
 = simple_form_for(@place || :resource, html: {id: "modal_addform", class: "form-horizontal"}) do |f|
   #result
-    .control-group
-      %label.control-label{for: "add_approval"} Approved
-      .controls
-        = f.input :approved, as: :boolean, label: false, input_html: {class: "input-xlarge"} 
+    - if user_signed_in?
+      .control-group
+        %label.control-label{for: "add_approval"} Approved
+        .controls
+          = f.input :approved, as: :boolean, label: false, input_html: {class: "input-xlarge"} 
   %fieldset
     .control-group
       %label.control-label{for: "add_owner_name"} Your Name
@@ -35,7 +36,7 @@
     .control-group
       %label.control-label{:for => "add_address"} Address
       .controls
-        = f.input :address, as: :text, label: false, input_html: {class: "input-xlarge", rows: 4}
+        = f.input :address, label: false, input_html: {class: "input-xlarge"}
         %p.help-block
           Should be your
           = succeed "." do
@@ -50,7 +51,7 @@
     .control-group
       %label.control-label{:for => "add_description"} Description
       .controls
-        = f.input :description, as: :text, input_html: {class: "input-xlarge", maxlength: "150"}
+        = f.input :description, as: :text, input_html: {class: "input-xlarge", rows: 4, maxlength: "150"}
         %p.help-block
           Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
 
