@@ -9,12 +9,17 @@
       %a.btn.btn-large.btn-info{"data-toggle" => "modal", :href => "#modal_info"} More Info
       %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add Something!
     .share
-      %a.twitter-share-button{"data-count" => "none", "data-text" => "Let's put philippine startups on the map:", "data-url" => "http://www.represent.ph", "data-via" => "", :href => "https://twitter.com/share"} Tweet
-      :javascript
-        !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");          .fb-like{"data-font" => "arial", "data-href" => "http://www.represent.la", "data-layout" => "button_count", "data-send" => "false", "data-show-faces" => "false", "data-width" => "100"}
+      %a.twitter-share-button{"data-count" => "none", "data-text" => "Let's put philippine startups on the map:", "data-url" => "http://www.represent.ph", "data-via" => "@proudcloud", :href => "https://twitter.com/share"} 
     .blurb
       %span Inspired by
       = link_to "RepresentMap", "http://www.representmap.com"
+      and ported to Ruby on Rails by 
+      %a{href: "http://www.twitter.com/hvictorsolis"}@hvictorsolis
+      + 
+      %a{href: "http://www.twitter.com/jayfajardo"}@jayfajardo
+      +
+      %a{href: "http://www.twitter.com/proudcloud"}@proudcloud
+      
     .search
       %input#search{:autocomplete => "off", "data-provide" => "typeahead", :name => "search", :placeholder => "Type a company name...", :type => "text"}/
 
@@ -34,4 +39,5 @@
             %li{:class => "#{marker.type}"}
               %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} #{marker.title}
             - index+=1
+
 
