@@ -1,0 +1,52 @@
+/ main menu bar (mobile)
+.menu_mobile
+  .wrapper
+    .buttons
+      %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add
+      %a.btn.btn-large{"data-toggle" => "modal", :href => "#modal_info"} Info
+    .logo
+      %a{:href => "http://represent.la/"}
+        %img{:alt => "RepresentLA", :src => "images/logo.png"}/
+/ more info modal
+#modal_info.modal.hide
+  .modal-header
+    %button.close{"data-dismiss" => "modal", :type => "button"} ×
+    %h3 About This Map
+  .modal-body
+    %p
+      We built this map to connect and promote the tech startup community
+      in our beloved Los Angeles. We've seeded the map but we need
+      your help to keep it fresh. If you don't see your company,
+      please
+      = succeed "." do
+        %a{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#modal_add"} submit it here
+      Let's put LA on the map together!
+    %p
+      Questions? Feedback? Connect with us:
+      %a{:href => "http://www.twitter.com/representla", :target => "_blank"} @representla
+    %p
+      If you want to support the LA community by linking to this map from your website,
+      here are some badges you might like to use. You can also grab the
+      = succeed "." do
+        %a{:href => "./images/badges/LA-icon.ai"} LA icon AI file
+    %ul.badges
+      %li
+        %img{:alt => "", :src => "./images/badges/badge1.png"}
+      %li
+        %img{:alt => "", :src => "./images/badges/badge1_small.png"}
+      %li
+        %img{:alt => "", :src => "./images/badges/badge2.png"}
+      %li
+        %img{:alt => "", :src => "./images/badges/badge2_small.png"}
+    %p
+      This map was built with
+      %a{:href => "https://github.com/abenzer/represent-map"} RepresentMap
+      \- an open source project we started
+      to help startup communities around the world create their own maps.
+      Check out some
+      %a{:href => "http://www.represent.la/and-other-cities", :target => "_blank"} startup maps
+      built by other communities!
+  .modal-footer
+    %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
+
+
