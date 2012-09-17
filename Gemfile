@@ -17,7 +17,7 @@ end
 
 group :test do
   gem "database_cleaner", ">= 0.7.0"
-  gem "mongoid-rspec", ">= 1.4.4"
+  gem "mongoid-rspec", "1.4.4"
   gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'spork'
