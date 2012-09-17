@@ -47,6 +47,4 @@ gem "rails_admin"
 gem "inherited_resources"
 gem "gon"
 
-#gem 'gmaps4rails'
-#gem 'mongoid_geospatial'
 gem 'geocoder'
