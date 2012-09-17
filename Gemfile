@@ -10,7 +10,6 @@ group :assets do
 end
 
 group :development do
-  gem "pry"
   gem "wirble"
   gem "awesome_print"
   gem "quiet_assets"
@@ -33,6 +32,7 @@ group :development, :test do
   gem "thin"
 end
 
+gem "pry"
 gem 'jquery-rails'
 gem "haml"
 gem "haml-rails"
