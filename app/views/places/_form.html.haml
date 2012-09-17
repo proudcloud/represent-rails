@@ -1,6 +1,6 @@
 = simple_form_for(@place || :resource, html: {id: "modal_addform", class: "form-horizontal"}) do |f|
   #result
-    - if user_signed_in?
+    - if @origin 
       .control-group
         %label.control-label{for: "add_approval"} Approved
         .controls

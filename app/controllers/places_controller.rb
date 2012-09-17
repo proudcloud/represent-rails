@@ -1,5 +1,7 @@
 class PlacesController < InheritedResources::Base
   before_filter :authenticate_user!, except: [:map, :create, :new]
+  before_filter :set_origin, except: [:map]
+
   layout "admin", except: [:map]
 
   def create
@@ -47,4 +49,9 @@ class PlacesController < InheritedResources::Base
     render "index"
   end
 
+  protected
+
+  def set_origin
+    @origin = "non-modal"
+  end
 end
