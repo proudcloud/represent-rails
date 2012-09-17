@@ -1,2 +1,2 @@
 engine=rails3
-addons=(mongodb)
+addons=()
