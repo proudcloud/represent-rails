@@ -1,4 +1,4 @@
-= simple_form_for(@place || :resource, html: {id: "modal_addform", class: "form-horizontal"}) do |f|
+= simple_form_for(@place, html: {id: "modal_addform", class: "form-horizontal"}) do |f|
   #result
     - if @origin 
       .control-group
@@ -26,8 +26,8 @@
     .control-group
       %label.control-label{for: "add_longitude"} Coordinates
       .controls
-        = f.input :lat, label: false, placeholder: "Latitude", input_html: {class: "input-medium"}, wrapper_html: {class: "span2", style: "margin-left: 0px;"}
-        = f.input :lng, label: false, placeholder: "Longitude", input_html: {class: "input-medium"}, wrapper_html: {class: "span2", style: "margin-left: 30px;"}
+        = f.input :lat, label: false, required: false, placeholder: "Latitude", input_html: {class: "input-medium"}, wrapper_html: {class: "span2", style: "margin-left: 0px;"}
+        = f.input :lng, label: false, required: false, placeholder: "Longitude", input_html: {class: "input-medium"}, wrapper_html: {class: "span2", style: "margin-left: 30px;"}
         .clearfix
         %p.help-block
           We prefer that you enter your coordinates for accuracy. You can 
