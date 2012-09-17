@@ -87,6 +87,9 @@ html, body, #map_canvas
   font-weight: normal;
   line-height: 130%;
   padding: 5px 15px 0px 15px;
+
+  alink { color: #E3Cf60; }
+
   
 }
 .menu .buttons

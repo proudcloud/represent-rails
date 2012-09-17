@@ -45,22 +45,27 @@
     .control-group
       %label.control-label{:for => "add_uri"} Website URL
       .controls
-        = f.input :uri, placeholder: "http://www.yourdomain.com",input_html: {class: "input-xlarge"}
+        = f.input :uri, label: false, placeholder: "http://www.yourdomain.com",input_html: {class: "input-xlarge"}
         %p.help-block
           Should be your full URL with no trailing slash, e.g. "http://www.yoursite.com"
     .control-group
       %label.control-label{:for => "add_description"} Description
       .controls
-        = f.input :description, as: :text, input_html: {class: "input-xlarge", rows: 4, maxlength: "150"}
+        = f.input :description, label: false, input_html: {class: "input-xlarge", maxlength: "150"}
         %p.help-block
           Brief, concise description. What's your product? What problem do you solve? Max 150 chars.
 
-  .modal-footer
-    .form-actions
-      %button#submit-it.btn.btn-primary.btn-large
-        %span
-          Save
+  .modal-footer.pull-right
+    %button#submit-it.btn.btn-primary.btn-large
+      %span
+        Save
+    
+    - if user_signed_in?
       %a{href: places_path}
+        %button.btn.btn-large
+          Cancel 
+    - else
+      %a{href: root_path}
         %button.btn.btn-large
           Cancel 
     

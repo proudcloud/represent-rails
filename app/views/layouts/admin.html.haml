@@ -11,6 +11,8 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
     = yield(:head)
+    %style
+      html, body { overflow-y: auto; }
   %body
     #wrap
       %header.navbar.navbar-inverse
