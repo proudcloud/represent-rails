@@ -279,7 +279,7 @@ DEPENDENCIES
   haml-rails
   inherited_resources
   jquery-rails
-  mongoid (= 2.4.12)
+  mongoid
   mongoid-rspec (= 1.4.4)
   pry
   quiet_assets
