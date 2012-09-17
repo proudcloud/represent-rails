@@ -5,18 +5,13 @@ class PlacesController < InheritedResources::Base
   layout "admin", except: [:map]
 
   
-  #def create
-  #  @place = Place.new params[:place]
-  #  if @place.save
-  #    respond_to do |format|
-  #      format.html { render text: "success" }
-  #    end
-  #  else
-  #    respond_to do |format|
-  #      format.html { render text: "Please fill out all fields" }
-  #    end
-  #  end
-  # end
+  def create
+    @place = Place.new params[:place]
+    if @place.save
+      flash[:notice] = "Thanks, your entry has been submitted and will be reviewed shortly!"
+      redirect_to root_path
+    end
+  end
 
   def map
     @place = Place.new
