@@ -38,7 +38,7 @@ gem "haml"
 gem "haml-rails"
 gem "simple_form"
 
-gem "mongoid"
+gem "mongoid", "2.5.0"
 gem "bson_ext"
 
 gem "devise"
