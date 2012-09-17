@@ -72,6 +72,6 @@ production:
     default:
       database: represent_ph_production
       hosts:
-        - localhost:27017
+        - localhost
       options:
         consistency: strong
