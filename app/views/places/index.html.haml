@@ -14,19 +14,19 @@
       %li.active
         = link_to "All", "#", 'data-toggle' => 'tab' 
       %li
-        = link_to "Pending", "#"
+        = link_to "Pending", "#", 'data-toggle' => 'tab'
       %li
-        = link_to "Startups", "#"
+        = link_to "Startups", "#", 'data-toggle' => 'tab'
       %li
-        = link_to "Accelerators", "#"
+        = link_to "Accelerators", "#", 'data-toggle' => 'tab'
       %li
-        = link_to "Incubators", "#"
+        = link_to "Incubators", "#", 'data-toggle' => 'tab'
       %li
-        = link_to "Coworking", "#"
+        = link_to "Coworking", "#", 'data-toggle' => 'tab'
       %li
-        = link_to "Investors", "#"
+        = link_to "Investors", "#", 'data-toggle' => 'tab'
       %li
-        = link_to "Consulting", "#"
+        = link_to "Consulting", "#", 'data-toggle' => 'tab'
   %table.table
     %thead
       %th
@@ -35,14 +35,6 @@
         Type
       %th
         Description
-      %th
-        Address
-      %th
-        URL
-      %th
-        Owner
-      %th
-        Email
       %th
         Actions
     %tbody
@@ -54,14 +46,6 @@
             = place.type
           %td
             = place.description
-          %td
-            = place.address
-          %td
-            = place.uri
-          %td
-            = place.owner_name
-          %td
-            = place.owner_email
           %td
             = link_to place_path(place) do
               %i.icon-search
