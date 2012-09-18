@@ -42,7 +42,8 @@
               %i.icon-search
             = link_to edit_place_path(place) do
               %i.icon-pencil
-            %i.icon-remove
+            = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+              %i{class: "icon-remove"}
 
 
 
