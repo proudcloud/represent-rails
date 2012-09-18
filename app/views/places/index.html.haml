@@ -10,23 +10,23 @@
 
 
   .tabbable
-    %ul
+    %ul.nav.nav-tabs
+      %li.active
+        = link_to "All", "#", 'data-toggle' => 'tab' 
       %li
-        = link_to "All"
+        = link_to "Pending", "#"
       %li
-        = link_to "Pending"
+        = link_to "Startups", "#"
       %li
-        = link_to "Startups"
+        = link_to "Accelerators", "#"
       %li
-        = link_to "Accelerators"
+        = link_to "Incubators", "#"
       %li
-        = link_to "Incubators"
+        = link_to "Coworking", "#"
       %li
-        = link_to "Coworking"
+        = link_to "Investors", "#"
       %li
-        = link_to "Investors"
-      %li
-        = link_to "Consulting"
+        = link_to "Consulting", "#"
   %table.table
     %thead
       %th
@@ -49,7 +49,7 @@
       - @places.each do |place|
         %tr
           %td
-            = place.title
+            = link_to place.title, place_path(place)
           %td
             = place.type
           %td

@@ -15,7 +15,6 @@ class PlacesController < InheritedResources::Base
 
   def map
     @place = Place.new
-    #TODO: FFS, CLEAN THIS SHIT UP!
 
     @types = [['startup', 'Startups'],
               ['accelerator', 'Accelerators'],

@@ -16,6 +16,14 @@ class Place
 
   field :coordinates, type: Array, default: [0.0,0.0]
 
+  scope :pending, where(approved: false)
+  scope :startup, where(type: "startup")
+  scope :accelerator, where(type: "accelerator")
+  scope :incubator, where(type: "incubator")
+  scope :coworking, where(type: "coworking")
+  scope :investor, where(type: "investor")
+  scope :service, where(type: "service")
+
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
 
   geocoded_by :address
