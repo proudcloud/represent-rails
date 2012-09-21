@@ -13,6 +13,7 @@ class Place
   field :sector
   field :owner_name
   field :owner_email
+  field :date
 
   field :coordinates, type: Array, default: [0.0,0.0]
 
@@ -25,10 +26,14 @@ class Place
   scope :service, where(type: "service")
 
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
+  validates_presence_of :date, if: :event?
 
   geocoded_by :address
   before_save :geocode_if_required
 
+  def event?
+    self.type == 'event'
+  end
 
   def status
     approved ? "Approved" : "Pending"
