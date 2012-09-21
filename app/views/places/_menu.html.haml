@@ -26,15 +26,15 @@
   %ul#list.list
     - index = 0
     - TYPES.each do |type|
-      - @markers = Place.where(approved: true, type: type[0]).order_by(:title.asc).to_a
+      - @markers = Place.where(approved: true, type: type[1]).order_by(:title.asc).to_a
       %li.category
         .category_item
-          .category_toggle{:id => "filter_#{type[0]}", :onClick => "toggle('#{type[0]}')"}
-          %a.category_info{:href => "#", :onClick => "toggleList('#{type[0]}')"}
-            %img{:alt => "", :src => "./images/icons/#{type[0]}.png"}>/
-            #{type[1]}
+          .category_toggle{:id => "filter_#{type[0]}", :onClick => "toggle('#{type[1]}')"}
+          %a.category_info{:href => "#", :onClick => "toggleList('#{type[1]}')"}
+            %img{:alt => "", :src => "./images/icons/#{type[1]}.png"}>/
+            #{type[0]}
             %span.total (#{@markers.length})
-        %ul.list-items{:class => "list-#{type[0]}"}
+        %ul.list-items{:class => "list-#{type[1]}"}
           - @markers.each do |marker|
             %li{:class => "#{marker.type}"}
               %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} #{marker.title}
