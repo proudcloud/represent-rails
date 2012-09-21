@@ -326,6 +326,8 @@ html, body, #map_canvas
 .modal
 {
   background-color: transparent;
+  overflow-y: auto;
+  max-height: 80%;
 }
 .modal .modal-header
 {
@@ -360,7 +362,7 @@ html, body, #map_canvas
 /* add marker modal */
 #modal_add
 {
-  margin-top: -381px;
+  margin-top: -40%
 }
 #modal_add .modal-body
 {
