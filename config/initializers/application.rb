@@ -1,7 +1,8 @@
-TYPES = [['Startups', 'startup'],
-          ['Accelerators', 'accelerator'],
-          ['Incubators', 'incubator'],
-          ['Coworking', 'coworking'],
-          ['Investor', 'investor'],
-          ['Consulting', 'service']]
+TYPES = [['startup', 'Startups'],
+          ['accelerator', 'Accelerators'],
+          ['incubator', 'Incubators'],
+          ['coworking', 'Coworking'],
+          ['investor', 'Investors'],
+          ['service', 'Consulting'],
+          ['event', 'Events']]
 

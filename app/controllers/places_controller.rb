@@ -16,16 +16,9 @@ class PlacesController < InheritedResources::Base
   def map
     @place = Place.new
 
-    @types = [['startup', 'Startups'],
-              ['accelerator', 'Accelerators'],
-              ['incubator', 'Incubators'],
-              ['coworking', 'Coworking'],
-              ['investor', 'Investors'],
-              ['service', 'Consulting']]
-
     gon.places = []
 
-    @types.each do |type|
+    TYPES.each do |type|
       Place.where(approved: 1, type: type[0]).order_by(:title.asc).each do |value|
         place = ["#{value.title}", 
                 "#{value.type}",
