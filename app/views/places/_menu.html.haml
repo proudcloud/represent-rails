@@ -25,7 +25,7 @@
 
   %ul#list.list
     - index = 0
-    - @types.each do |type|
+    - TYPES.each do |type|
       - @markers = Place.where(approved: true, type: type[0]).order_by(:title.asc).to_a
       %li.category
         .category_item
