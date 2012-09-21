@@ -8,52 +8,177 @@
       %button.btn.btn-info
         Add a new place
 
-
   .tabbable
-    %ul.nav.nav-tabs
+    %ul.nav.nav-tabs#places_tab
       %li.active
-        = link_to "All", "#", 'data-toggle' => 'tab' 
+        = link_to "All", "all", :'data-toggle' => 'tab' 
       %li
-        = link_to "Pending", "#", 'data-toggle' => 'tab'
+        = link_to "Pending", "pending", :'data-toggle' => 'tab'
       %li
-        = link_to "Startups", "#", 'data-toggle' => 'tab'
+        = link_to "Startups", "startup", :'data-toggle' => 'tab'
       %li
-        = link_to "Accelerators", "#", 'data-toggle' => 'tab'
+        = link_to "Accelerators", "accelerator", :'data-toggle' => 'tab'
       %li
-        = link_to "Incubators", "#", 'data-toggle' => 'tab'
+        = link_to "Incubators", "incubator", :'data-toggle' => 'tab'
       %li
-        = link_to "Coworking", "#", 'data-toggle' => 'tab'
+        = link_to "Coworking", "coworking", :'data-toggle' => 'tab'
       %li
-        = link_to "Investors", "#", 'data-toggle' => 'tab'
+        = link_to "Investors", "investor", :'data-toggle' => 'tab'
       %li
-        = link_to "Consulting", "#", 'data-toggle' => 'tab'
-  %table.table
-    %thead
-      %th
-        Title
-      %th
-        Type
-      %th
-        Description
-      %th
-        Actions
-    %tbody
-      - @places.each do |place|
-        %tr
-          %td
-            = link_to place.title, place_path(place)
-          %td
-            = place.type
-          %td
-            = place.description
-          %td
-            = link_to place_path(place) do
-              %i.icon-search
-            = link_to edit_place_path(place) do
-              %i.icon-pencil
-            = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
-              %i{class: "icon-remove"}
+        = link_to "Consulting", "service", :'data-toggle' => 'tab'
+    %table.table
+      %thead
+        %th
+          Title
+        %th
+          Type
+        %th
+          Description
+        %th
+          Actions
+      .tab-content
+        .tab-pane.fade.active#all
+          %tbody
+            - @places.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.fade#pending
+          %tbody
+            - @places.pending.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.fade#startup
+          %tbody
+            - @places.startup.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.fade#accelerator
+          %tbody
+            - @places.accelerator.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.fade#incubator
+          %tbody
+            - @places.incubator.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.fade#coworking
+          %tbody
+            - @places.coworking.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.fade#investor
+          %tbody
+            - @places.investor.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
+        .tab-pane.active#all
+          %tbody
+            - @places.service.each do |place|
+              %tr
+                %td
+                  = link_to place.title, place_path(place)
+                %td
+                  = place.type
+                %td
+                  = place.description
+                %td
+                  = link_to place_path(place) do
+                    %i.icon-search
+                  = link_to edit_place_path(place) do
+                    %i.icon-pencil
+                  = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+                    %i{class: "icon-remove"}
 
 
+:javascript
+  $('#places_tab a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  })
 
   

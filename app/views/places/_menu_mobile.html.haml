@@ -7,36 +7,3 @@
     .logo
       %a{:href => "http://represent.ph/"}
         %img{:alt => "RepresentLA", :src => "images/represent.png"}/
-/ more info modal
-#modal_info.modal.hide
-  .modal-header
-    %button.close{"data-dismiss" => "modal", :type => "button"} ×
-    %h3 About This Map
-  .modal-body
-    %p
-      We built this map to connect and promote the tech startup community
-      in the Philippines. We've seeded the map but we need
-      your help to keep it fresh. If you don't see your company,
-      please
-      = succeed "." do
-        %a{"data-dismiss" => "modal", "data-toggle" => "modal", :href => "#modal_add"} submit it here
-      Let's put the Philippines on the map together!
-    %p
-      Questions? Feedback? Connect with us:
-      %a{:href => "http://www.twitter.com/proudcloud", :target => "_blank"} @proudcloud
-    %p
-      This map was ported to Ruby on Rails by 
-      %a{href: "http://www.twitter.com/hvictorsolis"}@hvictorsolis
-      &amp; 
-      %a{href: "http://www.twitter.com/hvictorsolis"}
-        @jayfajardo
-      and was inspired by 
-      %a{:href => "https://github.com/abenzer/represent-map"} RepresentMap
-      \- an open source project started by @representla to help startup communities around the world create their own maps.
-      Check out some
-      %a{:href => "http://www.represent.la/and-other-cities", :target => "_blank"} startup maps
-      built by other communities!
-  .modal-footer
-    %a.btn{"data-dismiss" => "modal", :href => "#", :style => "float: right;"} Close
-
-
