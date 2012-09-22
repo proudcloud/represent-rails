@@ -50,7 +50,7 @@ RepresentPh::Application.configure do
   config.assets.precompile += %w(map.js)
   config.assets.precompile += %w(bootstrap-typeahead.js)
   config.assets.precompile += %w(label.js)
-  config.assets.precompile += %w(form.js)
+  config.assets.precompile += %w(form.js.coffee)
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
