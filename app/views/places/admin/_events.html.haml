@@ -7,6 +7,8 @@
     %th
       Description
     %th
+      Date
+    %th
       Actions
   %tbody
     - @places.event.each do |place|
@@ -17,6 +19,8 @@
           = link_to place.uri, place.uri, target: "_blank"
         %td
           = place.description
+        %td
+          = place.date.to_date.strftime("%B %e, %Y")
         %td
           = link_to place_path(place) do
             %i.icon-search

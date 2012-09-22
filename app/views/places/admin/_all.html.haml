@@ -7,6 +7,8 @@
     %th
       Description
     %th
+      Approved
+    %th
       Actions
   %tbody
     - @places.each do |place|
@@ -17,6 +19,8 @@
           = place.type
         %td
           = place.description
+        %td
+          = place.approved ? 'Yes' : 'No'
         %td
           = link_to place_path(place) do
             %i.icon-search

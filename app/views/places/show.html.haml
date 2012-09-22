@@ -14,6 +14,7 @@
     %button.btn.btn-medium.btn-primary
       Edit
   = link_to "Delete", place_path(@place), method: :delete, confirm: "Are you sure you want to delete this?", class: "btn btn-danger btn-medium"
+  = link_to "Cancel", places_path, class: "btn"
 
 %h5
   Description

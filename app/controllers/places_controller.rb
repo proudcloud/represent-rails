@@ -40,7 +40,15 @@ class PlacesController < InheritedResources::Base
   end
 
   def destroy
-    destroy!(notice: "Record deleted.") { places_path }
+    destroy! { places_path }
+  end
+
+  def create
+    create! { places_path }
+  end
+
+  def update
+    update! { places_path }
   end
 
   protected

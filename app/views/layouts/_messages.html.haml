@@ -1,4 +1,4 @@
-.alert-container
+.alert-container{style: "margin-top: -15px; width: 940px;"}
   - flash.each do |name, msg|
     %div{:class => "alert alert-#{name == :notice ? 'success' : 'error'} fade in"}
       %a.close{"data-dismiss" => "alert"} ×
