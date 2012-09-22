@@ -23,6 +23,12 @@
       .controls
         = f.input :type, collection: TYPES, include_blank: false, label: false 
 
+    .control-group.form-date
+      %label.control-label{:for => "add_date"} Event Date
+      .controls
+        = f.input :date, include_blank: false, label: false, input_html: {class: "input-xlarge"}
+
+
     .control-group
       %label.control-label{for: "add_longitude"} Coordinates
       .controls
