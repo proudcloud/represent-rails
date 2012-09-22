@@ -1,0 +1,26 @@
+%table.table
+  %thead
+    %th
+      Title
+    %th
+      Type
+    %th
+      Description
+    %th
+      Actions
+    %tbody
+      - @places.each do |place|
+        %tr
+          %td
+            = link_to place.title, place_path(place)
+          %td
+            = place.type
+          %td
+            = place.description
+          %td
+            = link_to place_path(place) do
+              %i.icon-search
+            = link_to edit_place_path(place) do
+              %i.icon-pencil
+            = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
+              %i{class: "icon-remove"}
