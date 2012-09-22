@@ -1,5 +1,5 @@
 $ ->
-  if $("place_type option:selected").text() is not "Events"
+  if $("#place_type option:selected").text() != "Events"
     $(".form-date").hide()
 
   $("#place_date").datepicker({dateFormat: "D, MM dd, yy"})
@@ -11,7 +11,7 @@ $ ->
       $("#place_date").attr("required", "required")
     else
       if $("#place_date").is(":visible")
-        $(".form-date").hide("slide",{direction: "up"})
+        $(".form-date").slideToggle()
         $("#place_date").removeAttr("required", "required")
   
 

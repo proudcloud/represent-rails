@@ -15,11 +15,11 @@
       .controls
         = f.input :owner_email, label: false, input_html: {class: "input-xlarge"} 
     .control-group
-      %label.control-label{:for => "add_title"} Company Name
+      %label.control-label{:for => "add_title"} Company/Event Name
       .controls
         = f.input :title, label: false,  input_html: {class: "input-xlarge"}
     .control-group
-      %label.control-label{:for => "add_type"} Company Type
+      %label.control-label{:for => "add_type"} Type
       .controls
         = f.input :type, collection: TYPES, include_blank: false, label: false 
 
