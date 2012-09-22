@@ -26,7 +26,8 @@ class PlacesController < InheritedResources::Base
                 "#{value.lng}", 
                 "#{value.description}", 
                 "#{value.uri}", 
-                "#{value.address}"]
+                "#{value.address}",
+                "#{value.date}"]
         gon.places.push place
       end
     end

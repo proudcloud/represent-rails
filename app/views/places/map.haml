@@ -224,12 +224,26 @@
 
                 // add marker click effects (open infowindow)
                 google.maps.event.addListener(marker, 'click', function () {
-                  infowindow.setContent(
-                    "<div class='marker_title'>"+val[0]+"</div>"
-                    + "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>"
-                    + "<div class='marker_desc'>"+val[4]+"</div>"
-                    + "<div class='marker_address'>"+val[6]+"</div>"
-                  );
+                  if (val[1] == 'event')
+                  {
+                    infowindow.setContent(
+                      "<div class='marker_title'>"+val[0]+"</div>"
+                      + "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>"
+                      + "<div class='marker_desc'>"+val[4]+"</div>"
+                      + "<div class='marker_date'>"+val[7]+"</div>"
+                      + "<div class='marker_address'>"+val[6]+"</div>"
+                    );
+
+                  }
+                  else
+                  {
+                    infowindow.setContent(
+                      "<div class='marker_title'>"+val[0]+"</div>"
+                      + "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>"
+                      + "<div class='marker_desc'>"+val[4]+"</div>"
+                      + "<div class='marker_address'>"+val[6]+"</div>"
+                    );
+                  }
                   infowindow.open(map, this);
                 });
 

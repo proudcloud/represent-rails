@@ -319,6 +319,13 @@ html, body, #map_canvas
   margin-top: 10px;
   color: #999;
 }
+.marker_date
+{
+  color: #555;
+  font-size: 9pt;
+  margin-top: 10px;
+
+}
 
 
 

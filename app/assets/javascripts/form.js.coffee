@@ -1,7 +1,7 @@
 $ ->
   $(".form-date").hide()
 
-  $("#place_date").datepicker()
+  $("#place_date").datepicker({dateFormat: "D, MM dd, yy"})
 
   $("#place_type").change ->
     console.log $("#place_type option:selected").text()
