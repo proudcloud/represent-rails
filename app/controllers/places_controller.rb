@@ -39,6 +39,10 @@ class PlacesController < InheritedResources::Base
     render "index"
   end
 
+  def destroy
+    destroy!(notice: "Record deleted.") { places_path }
+  end
+
   protected
 
   def set_origin
