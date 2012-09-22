@@ -25,6 +25,9 @@
         = link_to "Investors", "#investor", :'data-toggle' => 'tab'
       %li
         = link_to "Consulting", "#service", :'data-toggle' => 'tab'
+      %li
+        = link_to "Events", "#event", :'data-toggle' => 'tab'
+
     .tab-content
       .tab-pane.active#all
         = render 'places/admin/all'
@@ -42,3 +45,7 @@
         = render 'places/admin/investors'
       .tab-pane#service
         = render 'places/admin/services'
+      .tab-pane#service
+        = render 'places/admin/services'
+      .tab-pane#event
+        = render 'places/admin/events'

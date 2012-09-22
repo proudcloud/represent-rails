@@ -1,9 +1,9 @@
-%table.table
+%table.table.table-striped
   %thead
     %th
       Title
     %th
-      Type
+      Website
     %th
       Description
     %th
@@ -14,7 +14,7 @@
         %td
           = link_to place.title, place_path(place)
         %td
-          = place.type
+          = link_to place.uri, place.uri, target: "_blank"
         %td
           = place.description
         %td
