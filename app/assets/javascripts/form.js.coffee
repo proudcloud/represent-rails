@@ -10,5 +10,7 @@ $ ->
       $("#place_date").attr("required", "required")
     else
       if $("#place_date").is(":visible")
-        $(".form-date").hide("slide")
+        $(".form-date").slide",{direction: "up"})
         $("#place_date").removeAttr("required", "required")
+  
+
