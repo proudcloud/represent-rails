@@ -4,7 +4,7 @@ class Place
 
   field :approved, type: Boolean, default: false 
   field :title
-  field :type # startup, accelerator, incubator, coworking, investor, service 
+  field :type # startup, accelerator, incubator, coworking, investor, service, event
   field :lat, type: Float
   field :lng, type: Float
   field :address

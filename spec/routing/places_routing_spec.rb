@@ -1,7 +1,12 @@
 require "spec_helper"
 
 describe PlacesController do
+
   describe "routing" do
+
+    it "routes to #map" do
+      get("/").should route_to("places#map")
+    end
 
     it "routes to #index" do
       get("/places").should route_to("places#index")
