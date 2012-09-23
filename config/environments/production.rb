@@ -9,7 +9,7 @@ RepresentPh::Application.configure do
   config.action_controller.perform_caching = true
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
+  config.serve_static_assets = false 
 
   # Compress JavaScripts and CSS
   config.assets.compress = true
@@ -50,7 +50,7 @@ RepresentPh::Application.configure do
   config.assets.precompile += %w(map.js)
   config.assets.precompile += %w(bootstrap-typeahead.js)
   config.assets.precompile += %w(label.js)
-  config.assets.precompile += %w(form.js.coffee)
+  config.assets.precompile += %w(form.js)
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 
