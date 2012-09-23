@@ -136,7 +136,7 @@ function initialize() {
 
   // DEFINE MARKER HERE
 
-  markers = gon.places
+  markers = gon.places;
 
   // add markers
   jQuery.each(markers, function(i, val) {
@@ -195,31 +195,28 @@ function initialize() {
       markerURI = "http://" + markerURI; 
     }
     var markerURI_short = markerURI.replace("http://", "");
-    var markerURI_short = markerURI_short.replace("www.", "");
+    markerURI_short = markerURI_short.replace("www.", "");
 
     // add marker click effects (open infowindow)
     google.maps.event.addListener(marker, 'click', function () {
-      if (val[1] == 'event')
-        {
-          infowindow.setContent(
-            "<div class='marker_title'>"+val[0]+"</div>"
-            + "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>"
-            + "<div class='marker_desc'>"+val[4]+"</div>"
-            + "<div class='marker_date'>"+val[7]+"</div>"
-            + "<div class='marker_address'>"+val[6]+"</div>"
-          );
+      if (val[1] == 'event') {
+        infowindow.setContent(
+          "<div class='marker_title'>"+val[0]+"</div>" +
+          "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>" +
+          "<div class='marker_desc'>"+val[4]+"</div>" +
+          "<div class='marker_date'>"+val[7]+"</div>" +
+          "<div class='marker_address'>"+val[6]+"</div>" );
 
-        }
-        else
-          {
-            infowindow.setContent(
-              "<div class='marker_title'>"+val[0]+"</div>"
-              + "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>"
-              + "<div class='marker_desc'>"+val[4]+"</div>"
-              + "<div class='marker_address'>"+val[6]+"</div>"
-            );
-          }
-          infowindow.open(map, this);
+      }
+      else
+      {
+        infowindow.setContent(
+          "<div class='marker_title'>"+val[0]+"</div>" +
+          "<div class='marker_uri'><a target='_blank' href='"+markerURI+"'>"+markerURI_short+"</a></div>" +
+          "<div class='marker_desc'>"+val[4]+"</div>" +
+          "<div class='marker_address'>"+val[6]+"</div>" );
+      }
+      infowindow.open(map, this);
     });
 
     // add marker label
