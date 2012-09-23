@@ -6,3 +6,4 @@ TYPES = [['Startups', 'startup'],
           ['Consulting', 'service'],
           ['Events', 'event']]
 
+

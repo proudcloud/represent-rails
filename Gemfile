@@ -21,8 +21,10 @@ group :test do
   gem 'cucumber-rails', require: false
   gem 'capybara'
   gem 'spork'
-  gem 'guard-spork'
   gem 'guard'
+  gem 'guard-spork'
+  gem 'guard-rspec'
+  gem 'guard-cucumber'
   gem 'factory_girl_rails'
   gem 'rb-fsevent', '~> 0.9.1'
 end
