@@ -39,4 +39,3 @@ Spork.each_run do
   Cucumber::Rails::Database.javascript_strategy = :truncation
 
 end
-
