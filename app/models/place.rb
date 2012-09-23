@@ -30,7 +30,7 @@ class Place
   validates_presence_of :date, if: :event?
 
   geocoded_by :address
-  before_save :geocode_if_required
+  before_save :geocode_if_required, :ensure_country
 
   def event?
     self.type == 'event'
@@ -53,7 +53,6 @@ class Place
   end
 
   def geocode_if_required
-    ensure_country
     if self.lng.blank? || self.lat.blank?
       if geocode
         plot_coordinates

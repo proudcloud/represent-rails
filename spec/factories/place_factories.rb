@@ -1,64 +1,65 @@
 FactoryGirl.define do
 
-  factory :place do |p|
-    p.title "Vanilla company"
-    p.type "startup"
-    p.address "123 Sesame Street"
-    p.uri "www.sample.com"
-    p.description "Startup description"
-    p.owner_name "Test User"
-    p.owner_email "test@user.com"
-    p.date "test"
+  factory :place do
+    title "Vanilla Company"
+    type "startup"
+    address "123 Sesame Street"
+    uri "www.sample.com"
+    description "Startup description"
+    owner_name "Test User"
+    owner_email "test@user.com"
 
-    trait :startup do
-      before :create do
-        p.title "Startup Company"
-        p.type  "startup"
-      end
+    trait :startup_trait do
+      title "Startup Company"
+      type  "startup"
     end
 
-    trait :accelerator do
-      before :create do
-        p.title "Accelerator Company"
-        p.type  "accelerator"
-      end
+    trait :accelerator_trait do
+      title "Accelerator Company"
+      type  "accelerator"
     end
 
-    trait :incubator do
-      before :create do
-        title "Incubator Company"
-        type  "incubator"
-      end
+    trait :incubator_trait do
+      title "Incubator Company"
+      type  "incubator"
     end
 
-    trait :coworking do
-      before :create do
-        title "Coworking Company"
-        type  "coworking"
-      end
+    trait :coworking_trait do
+      title "Coworking Company"
+      type  "coworking"
     end
 
-    trait :investor do
-      before :create do
-        title "Investor Company"
-        type  "investor"
-      end
+    trait :investor_trait do
+      title "Investor Company"
+      type  "investor"
     end
 
-    trait :service do
-      before :create do
-        title "Service Company"
-        type  "service"
-      end
+    trait :consulting_trait do
+      title "Consulting Company"
+      type  "service"
     end
 
-    trait :event do
-      before :create do
-        title "Event Company"
-        type  "event"
-        date { 2.days.from_now }
-      end
+    trait :event_trait do
+      title "Event Company"
+      type  "event"
+      date { 2.days.from_now.to_s }
     end
+
+    trait :approved_trait do
+      approved true
+    end
+
+    trait :pending_trait do
+      approved false
+    end
+
+    factory :startup, traits: [:startup_trait]
+    factory :accelerator, traits: [:accelerator_trait]
+    factory :incubator, traits: [:incubator_trait]
+    factory :coworking, traits: [:coworking_trait]
+    factory :investor, traits: [:investor_trait]
+    factory :consulting, traits: [:consulting_trait]
+    factory :event, traits: [:event_trait]
 
   end
 

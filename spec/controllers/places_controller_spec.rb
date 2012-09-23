@@ -3,7 +3,7 @@ require 'spec_helper'
 describe PlacesController do
 
   def valid_attributes
-    FactoryGirl.attributes_for :place, :accelerator
+    FactoryGirl.attributes_for :startup
   end
 
   def valid_session

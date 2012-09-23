@@ -8,6 +8,10 @@ describe PlacesController do
       get("/").should route_to("places#map")
     end
 
+    it "routes to #admin" do
+      get("/admin").should route_to("places#admin")
+    end
+
     it "routes to #index" do
       get("/places").should route_to("places#index")
     end
