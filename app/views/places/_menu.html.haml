@@ -37,7 +37,13 @@
         %ul.list-items{:class => "list-#{type[1]}"}
           - @markers.each do |marker|
             %li{:class => "#{marker.type}"}
-              %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} #{marker.title}
+              %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} 
+                #{marker.title}
+                -if marker.type == 'event'
+                  ,&nbsp;
+                  #{Date.parse(marker.date).strftime("%b %d")}
+                ,&nbsp;
+                #{marker.description}
             - index+=1
 
 
