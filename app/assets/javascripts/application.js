@@ -17,5 +17,4 @@
 //= require map
 //= require bootstrap-typeahead
 //= require label
-//= require form
 //= require_tree .
