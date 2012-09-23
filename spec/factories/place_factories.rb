@@ -49,10 +49,6 @@ FactoryGirl.define do
       approved true
     end
 
-    trait :pending_trait do
-      approved false
-    end
-
     factory :startup, traits: [:startup_trait]
     factory :accelerator, traits: [:accelerator_trait]
     factory :incubator, traits: [:incubator_trait]
