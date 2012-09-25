@@ -1,24 +1,25 @@
 development:
-  host: localhost
-  database: represent_ph_development
-  #sessions:
-    #default:
-      #database: represent_ph_development
-      #hosts:
-        #- localhost:27017
-      #options:
-        #consistency: :strong
+  sessions:
+    default:
+      database: represent_ph_development
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
 test:
-  host: localhost
-  database: represent_ph_test
-  #sessions:
-    #default:
-      #database: represent_ph_test
-      #hosts:
-        #- localhost:27017
-      #options:
-        #consistency: :strong
+  sessions:
+    default:
+      database: represent_ph_test
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
 
-production:  
-  host: localhost
-  database: represent_ph_production
+production:
+  sessions:
+    default:
+      database: represent_ph_production
+      hosts:
+        - localhost
+      options:
+        consistency: strong
