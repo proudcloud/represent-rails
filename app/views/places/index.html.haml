@@ -1,32 +1,34 @@
-.page-header
-  %h2
-    Places
 
+
+.page-header
   .pull-right
     = link_to new_place_path do
       %button.btn.btn-info
         Add a new place
+  %h2
+    Places
+
 
   .tabbable
     %ul.nav.nav-tabs#places_tab
       %li.active
-        = link_to "All", "#all", :'data-toggle' => 'tab' 
+        = link_to "All (#{@places.count})", "#all", :'data-toggle' => 'tab' 
       %li
-        = link_to "Pending", "#pending", :'data-toggle' => 'tab'
+        = link_to "Pending (#{@places.pending.count})", "#pending", :'data-toggle' => 'tab'
       %li
-        = link_to "Startups", "#startup", :'data-toggle' => 'tab'
+        = link_to "Startups (#{@places.startup.count})", "#startup", :'data-toggle' => 'tab'
       %li
-        = link_to "Accelerators", "#accelerator", :'data-toggle' => 'tab'
+        = link_to "Accelerators (#{@places.accelerator.count})", "#accelerator", :'data-toggle' => 'tab'
       %li
-        = link_to "Incubators", "#incubator", :'data-toggle' => 'tab'
+        = link_to "Incubators (#{@places.incubator.count})", "#incubator", :'data-toggle' => 'tab'
       %li
-        = link_to "Coworking", "#coworking", :'data-toggle' => 'tab'
+        = link_to "Coworking (#{@places.coworking.count})", "#coworking", :'data-toggle' => 'tab'
       %li
-        = link_to "Investors", "#investor", :'data-toggle' => 'tab'
+        = link_to "Investors (#{@places.investor.count})", "#investor", :'data-toggle' => 'tab'
       %li
-        = link_to "Consulting", "#service", :'data-toggle' => 'tab'
+        = link_to "Consulting (#{@places.service.count})", "#service", :'data-toggle' => 'tab'
       %li
-        = link_to "Events", "#event", :'data-toggle' => 'tab'
+        = link_to "Events (#{@places.event.count})", "#event", :'data-toggle' => 'tab'
 
     .tab-content
       .tab-pane.active#all
