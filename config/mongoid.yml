@@ -19,6 +19,6 @@ test:
       #options:
         #consistency: :strong
 
-production:  host: lo
+production:  
   host: localhost
   database: represent_ph_production
