@@ -19,11 +19,6 @@ test:
       #options:
         #consistency: :strong
 
-production:
-  #sessions:
-    #default:
-      #database: represent_ph_production
-      #hosts:
-        #- localhost
-      #options:
-        #consistency: strong
+production:  host: lo
+  host: localhost
+  database: represent_ph_production
