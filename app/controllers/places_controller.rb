@@ -9,7 +9,11 @@ class PlacesController < InheritedResources::Base
     @place = Place.new params[:place]
     if @place.save
       flash[:notice] = "Thanks, your entry has been submitted and will be reviewed shortly!"
-      redirect_to root_path
+      if current_user
+        redirect_to places_path, notice: "Place successfully added."
+      else
+        redirect_to root_path
+      end
     end
   end
 
@@ -41,10 +45,6 @@ class PlacesController < InheritedResources::Base
 
   def destroy
     destroy! { places_path }
-  end
-
-  def create
-    create! { places_path }
   end
 
   def update
