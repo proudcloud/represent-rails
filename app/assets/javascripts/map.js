@@ -248,7 +248,7 @@ function initialize() {
 
 // zoom to specific marker
 function goToMarker(marker_id) {
-  if(marker_id) {
+  if(marker_id > -1) {
     map.panTo(gmarkers[marker_id].getPosition());
     map.setZoom(17);
     google.maps.event.trigger(gmarkers[marker_id], 'click');
