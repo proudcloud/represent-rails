@@ -232,16 +232,13 @@ function initialize() {
     label.bindTo('zIndex', marker);
   });
 
-
   // zoom to marker if selected in search typeahead list
   $('#search').typeahead({
-    source: markerTitles, 
+    source: markerTitles,
     onselect: function(obj) {
       marker_id = jQuery.inArray(obj, markerTitles);
       if(marker_id > -1) {
-        map.panTo(gmarkers[marker_id].getPosition());
-        map.setZoom(15);
-        google.maps.event.trigger(gmarkers[marker_id], 'click');
+        goToMarker(marker_id);
       }
       $("#search").val("");
     }

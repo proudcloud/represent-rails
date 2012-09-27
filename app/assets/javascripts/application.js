@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require twitter/bootstrap
 //= require map
-//= require bootstrap-typeahead
 //= require label
+//= require twitter/bootstrap
+//= require bootstrap-typeahead
 //= require_tree .

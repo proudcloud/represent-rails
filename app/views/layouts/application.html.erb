@@ -3,10 +3,10 @@
 <head>
   <title>Represent.ph</title>
   <%= include_gon %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-  <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js' %>
+  <%= javascript_include_tag "https://maps.googleapis.com/maps/api/js?sensor=false" %>
   <%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css" %>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
 
   <%= csrf_meta_tags %>
 </head>
