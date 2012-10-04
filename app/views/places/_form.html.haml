@@ -73,6 +73,28 @@
       %a.btn.btn-medium{"data-dismiss" => "modal", :href => "#"} Close
     
   
+:javascript
+  $(document).ready(function() {
+    if ($("#place_type option:selected").text() != "Events"){ 
+      $(".form-date").hide();
+    }
+  });
 
+  $("#place_date").datepicker({dateFormat: "D, MM dd, yy"});
+
+  $("#place_type").change(function() {
+    if ($("#place_type option:selected").val() == "event") {
+      $(".form-date").slideToggle();
+      $("#place_date").attr("required", "required");
+    }
+    else
+    {
+      if ($("#place_date").is(":visible")) {
+        $(".form-date").slideToggle();
+        $("#place_date").removeAttr("required", "required");
+      }
+    }
+  });
+  
   
   
