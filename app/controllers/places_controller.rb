@@ -4,7 +4,11 @@ class PlacesController < InheritedResources::Base
 
   layout "admin", except: [:map]
 
-  
+ 
+  def index
+    @places = Place.order_by(:title.asc ).all 
+  end
+
   def create
     @place = Place.new params[:place]
     if @place.save
@@ -39,7 +43,7 @@ class PlacesController < InheritedResources::Base
   end
 
   def admin
-    @places = Place.all 
+    @places = Place.order_by(:title.asc ).all 
     render "index"
   end
 
