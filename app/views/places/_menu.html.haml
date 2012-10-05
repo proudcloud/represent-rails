@@ -26,16 +26,15 @@
   %ul#list.list
     - index = 0
     - TYPES.each do |type|
-      - @markers = Place.send(type[1].to_sym).where(approved: true).order_by(:title.asc).to_a
       %li.category
         .category_item
           .category_toggle{:id => "filter_#{type[0]}", :onClick => "toggle('#{type[1]}')"}
           %a.category_info{:href => "#", :onClick => "toggleList('#{type[1]}')"}
             %img{:alt => "", :src => "./images/icons/#{type[1]}.png"}>/
             #{type[0]}
-            %span.total (#{@markers.length})
+            %span.total (#{@markers.send(type[1].to_sym).length})
         %ul.list-items{:class => "list-#{type[1]}"}
-          - @markers.each do |marker|
+          - @markers.send(type[1].to_sym).each do |marker|
             %li{:class => "#{marker.type}"}
               %a{:href => "#", :onClick => "goToMarker('#{index}')", :onMouseOut => "markerListMouseOut('#{index}')", :onMouseOver => "markerListMouseOver('#{index}')"} 
                 #{marker.title}
