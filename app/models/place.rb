@@ -13,7 +13,8 @@ class Place
   field :sector
   field :owner_name
   field :owner_email
-  field :date
+  field :date, type: Date
+  field :temp_date, type: Date
 
   field :coordinates, type: Array, default: [0.0,0.0]
 
@@ -24,7 +25,7 @@ class Place
   scope :coworking, where(type: "coworking")
   scope :investor, where(type: "investor")
   scope :service, where(type: "service")
-  scope :event, where(type: "event").order_by(:date.asc)
+  scope :event, where(type: "event", :date.gte => Date.today).order_by(:date.asc)
 
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
   validates_presence_of :date, if: :event?

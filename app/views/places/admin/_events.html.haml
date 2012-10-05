@@ -20,7 +20,7 @@
         %td
           = place.description
         %td
-          = place.date.to_date.strftime("%B %e, %Y")
+          = place.date.strftime("%B %e, %Y")
         %td
           = link_to place_path(place) do
             %i.icon-search
