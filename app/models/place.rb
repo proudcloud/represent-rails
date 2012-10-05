@@ -13,18 +13,18 @@ class Place
   field :sector
   field :owner_name
   field :owner_email
-  field :date, type: Date
+  field :date
   field :temp_date, type: Date
 
   field :coordinates, type: Array, default: [0.0,0.0]
 
-  scope :pending, where(approved: false)
-  scope :startup, where(type: "startup")
-  scope :accelerator, where(type: "accelerator")
-  scope :incubator, where(type: "incubator")
-  scope :coworking, where(type: "coworking")
-  scope :investor, where(type: "investor")
-  scope :service, where(type: "service")
+  scope :pending, where(approved: false).order_by(:title.asc)
+  scope :startup, where(type: "startup").order_by(:title.asc)
+  scope :accelerator, where(type: "accelerator").order_by(:title.asc)
+  scope :incubator, where(type: "incubator").order_by(:title.asc)
+  scope :coworking, where(type: "coworking").order_by(:title.asc)
+  scope :investor, where(type: "investor").order_by(:title.asc)
+  scope :service, where(type: "service").order_by(:title.asc)
   scope :event, where(type: "event", :date.gte => Date.today).order_by(:date.asc)
   scope :past_event, where(type: "event", :date.lt => Date.today).order_by(:date.asc)
 
