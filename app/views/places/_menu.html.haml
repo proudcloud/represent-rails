@@ -26,7 +26,7 @@
   %ul#list.list
     - index = 0
     - TYPES.each do |type|
-      - @markers = Place.where(approved: true, type: type[1]).order_by(:title.asc).to_a
+      - @markers = Place.send(type[1].to_sym).where(approved: true).order_by(:title.asc).to_a
       %li.category
         .category_item
           .category_toggle{:id => "filter_#{type[0]}", :onClick => "toggle('#{type[1]}')"}
@@ -41,7 +41,7 @@
                 #{marker.title}
                 -if marker.type == 'event'
                   ,&nbsp;
-                  #{Date.parse(marker.date).strftime("%b %d")}
+                  #{marker.date.strftime("%b %d")}
             - index+=1
 
 

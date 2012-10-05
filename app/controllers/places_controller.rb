@@ -27,7 +27,7 @@ class PlacesController < InheritedResources::Base
     gon.places = []
 
     TYPES.each do |type|
-      Place.where(approved: 1, type: type[1]).order_by(:title.asc).each do |value|
+      Place.send(type[1].to_sym).where(approved: 1).order_by(:title.asc).each do |value|
         place = ["#{value.title}", 
                 "#{value.type}",
                 "#{value.lat}",
