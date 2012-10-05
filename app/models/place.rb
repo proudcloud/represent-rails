@@ -26,6 +26,7 @@ class Place
   scope :investor, where(type: "investor")
   scope :service, where(type: "service")
   scope :event, where(type: "event", :date.gte => Date.today).order_by(:date.asc)
+  scope :past_event, where(type: "event", :date.lt => Date.today).order_by(:date.asc)
 
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
   validates_presence_of :date, if: :event?
