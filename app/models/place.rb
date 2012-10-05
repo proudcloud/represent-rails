@@ -13,7 +13,7 @@ class Place
   field :sector
   field :owner_name
   field :owner_email
-  field :date
+  field :date, type: Date
   field :temp_date, type: Date
 
   field :coordinates, type: Array, default: [0.0,0.0]
