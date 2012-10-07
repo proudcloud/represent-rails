@@ -1,8 +1,8 @@
 class PlacesController < InheritedResources::Base
+  layout "admin", except: [:map]
   before_filter :authenticate_user!, except: [:map, :create, :new]
   before_filter :set_origin, except: [:map]
 
-  layout "admin", except: [:map]
 
  
   def index
