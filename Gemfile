@@ -35,6 +35,8 @@ group :development, :test do
 end
 
 gem "pry"
+gem "pry-nav"
+
 gem 'jquery-rails'
 gem "haml"
 gem "haml-rails"

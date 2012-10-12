@@ -8,48 +8,69 @@
   %h2
     Places
 
+  .row
+    .tabbable.span2{style: "margin-top: 36px;"}
+      %ul.nav.nav-tabs.nav-stacked#places_tab
+        %li.active
+          = link_to "#all", :'data-toggle' => 'tab' do
+            = "All"
+            %span.badge.badge-info.pull-right= @places.count
+        %li
+          = link_to "#pending", :'data-toggle' => 'tab' do
+            = "Pending"
+            %span.badge.badge-important.pull-right= @places.pending.count
+        %li
+          = link_to "#startup", :'data-toggle' => 'tab' do
+            = "Startups"
+            %span.badge.badge-info.pull-right= @places.startup.count
+        %li
+          = link_to "#accelerator", :'data-toggle' => 'tab' do
+            = "Accelerators"
+            %span.badge.badge-info.pull-right= @places.accelerator.count
+        %li
+          = link_to "#incubator", :'data-toggle' => 'tab' do
+            = "Incubators"
+            %span.badge.badge-info.pull-right= @places.incubator.count
+        %li
+          = link_to "#coworking", :'data-toggle' => 'tab' do
+            = "Coworking"
+            %span.badge.badge-info.pull-right= @places.coworking.count
+        %li
+          = link_to "#investor", :'data-toggle' => 'tab' do
+            = "Investors"
+            %span.badge.badge-info.pull-right= @places.investor.count
+        %li
+          = link_to "#service", :'data-toggle' => 'tab' do
+            = "Consulting"
+            %span.badge.badge-info.pull-right= @places.service.count
+        %li
+          = link_to "#event", :'data-toggle' => 'tab' do
+            = "Events"
+            %span.badge.badge-info.pull-right= @places.event.count
+        %li
+          = link_to "#past_event", :'data-toggle' => 'tab' do
+            = "Past Events"
+            %span.badge.badge-info.pull-right= @places.past_event.count
 
-  .tabbable
-    %ul.nav.nav-tabs#places_tab
-      %li.active
-        = link_to "All (#{@places.count})", "#all", :'data-toggle' => 'tab' 
-      %li
-        = link_to "Pending (#{@places.pending.count})", "#pending", :'data-toggle' => 'tab'
-      %li
-        = link_to "Startups (#{@places.startup.count})", "#startup", :'data-toggle' => 'tab'
-      %li
-        = link_to "Accelerators (#{@places.accelerator.count})", "#accelerator", :'data-toggle' => 'tab'
-      %li
-        = link_to "Incubators (#{@places.incubator.count})", "#incubator", :'data-toggle' => 'tab'
-      %li
-        = link_to "Coworking (#{@places.coworking.count})", "#coworking", :'data-toggle' => 'tab'
-      %li
-        = link_to "Investors (#{@places.investor.count})", "#investor", :'data-toggle' => 'tab'
-      %li
-        = link_to "Consulting (#{@places.service.count})", "#service", :'data-toggle' => 'tab'
-      %li
-        = link_to "Events (#{@places.event.count})", "#event", :'data-toggle' => 'tab'
-      %li
-        = link_to "Past Events (#{@places.past_event.count})", "#event", :'data-toggle' => 'tab'
-
-    .tab-content
-      .tab-pane.active#all
-        = render 'places/admin/all'
-      .tab-pane#pending
-        = render 'places/admin/pending'
-      .tab-pane#startup
-        = render 'places/admin/startups'
-      .tab-pane#accelerator
-        = render 'places/admin/accelerators'
-      .tab-pane#incubator
-        = render 'places/admin/incubators'
-      .tab-pane#coworking
-        = render 'places/admin/coworkings'
-      .tab-pane#investor
-        = render 'places/admin/investors'
-      .tab-pane#service
-        = render 'places/admin/services'
-      .tab-pane#service
-        = render 'places/admin/services'
-      .tab-pane#event
-        = render 'places/admin/past_events'
+    .tabbable.span10
+      .tab-content
+        .tab-pane.active#all
+          = render 'places/admin/all'
+        .tab-pane#pending
+          = render 'places/admin/pending'
+        .tab-pane#startup
+          = render 'places/admin/startups'
+        .tab-pane#accelerator
+          = render 'places/admin/accelerators'
+        .tab-pane#incubator
+          = render 'places/admin/incubators'
+        .tab-pane#coworking
+          = render 'places/admin/coworkings'
+        .tab-pane#investor
+          = render 'places/admin/investors'
+        .tab-pane#service
+          = render 'places/admin/services'
+        .tab-pane#event
+          = render 'places/admin/events'
+        .tab-pane#past_event
+          = render 'places/admin/past_events'

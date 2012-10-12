@@ -38,7 +38,7 @@ class PlacesController < InheritedResources::Base
                 "#{value.description}", 
                 "#{value.uri}", 
                 "#{value.address}",
-                "#{value.date}"]
+                "#{value.date.strftime("%a, %b %e, %Y") if value.type == "event"}"]
         gon.places.push place
       end
     end
