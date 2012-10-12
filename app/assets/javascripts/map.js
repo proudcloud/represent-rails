@@ -235,14 +235,16 @@ function initialize() {
   // zoom to marker if selected in search typeahead list
   $('#search').typeahead({
     source: markerTitles,
-    onselect: function(obj) {
+    updater: function(obj) {
       marker_id = jQuery.inArray(obj, markerTitles);
       if(marker_id > -1) {
         goToMarker(marker_id);
       }
       $("#search").val("");
+      return obj;
     }
   });
+
 } 
 
 
