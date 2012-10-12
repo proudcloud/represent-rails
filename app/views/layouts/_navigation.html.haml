@@ -5,7 +5,7 @@
     Welcome
     = "#{current_user.email}!"
     &nbsp;|&nbsp;
-    = link_to "LOG-OUT", destroy_user_session_path, method: 'delete'
+    = link_to "LOG-OUT", destroy_user_session_path, method: :delete
     
   - else
     %li

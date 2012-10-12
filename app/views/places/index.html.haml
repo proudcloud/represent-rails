@@ -29,6 +29,8 @@
         = link_to "Consulting (#{@places.service.count})", "#service", :'data-toggle' => 'tab'
       %li
         = link_to "Events (#{@places.event.count})", "#event", :'data-toggle' => 'tab'
+      %li
+        = link_to "Past Events (#{@places.past_event.count})", "#event", :'data-toggle' => 'tab'
 
     .tab-content
       .tab-pane.active#all
@@ -50,4 +52,4 @@
       .tab-pane#service
         = render 'places/admin/services'
       .tab-pane#event
-        = render 'places/admin/events'
+        = render 'places/admin/past_events'
