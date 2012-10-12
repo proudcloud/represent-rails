@@ -16,3 +16,5 @@
 .rvmrc
 /config/database.yml
 /config/mongoid.yml
+.powrc
+public/assets
