@@ -44,7 +44,6 @@ gem "mongoid", "2.5.0"
 gem "bson_ext"
 
 gem "devise"
-gem "rails_admin"
 
 gem "inherited_resources"
 gem "gon"

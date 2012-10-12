@@ -1,6 +1,4 @@
-RepresentPh::Application.routes.draw do
-  #mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
+Represent::Application.routes.draw do
   devise_for :users
 
   match "/admin" => "places#admin"
