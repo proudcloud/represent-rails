@@ -1,1 +1,3 @@
 README
+
+https://raw.github.com/eternicode/bootstrap-datepicker/master/js/bootstrap-datepicker.js

@@ -80,7 +80,7 @@
     }
   });
 
-  $("#place_date").datepicker({dateFormat: "D, MM dd, yy"});
+  $("#place_date").datepicker({ format: 'MM d, yyyy' });
 
   $("#place_type").change(function() {
     if ($("#place_type option:selected").val() == "event") {
