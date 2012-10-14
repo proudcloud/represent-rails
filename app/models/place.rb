@@ -2,6 +2,8 @@ class Place
   include Mongoid::Document
   include Geocoder::Model::Mongoid
 
+  cache
+
   field :approved, type: Boolean, default: false 
   field :title
   field :type # startup, accelerator, incubator, coworking, investor, service, event
