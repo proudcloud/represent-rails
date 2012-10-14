@@ -66,15 +66,6 @@ describe PlacesController do
       end
     end
 
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved place as @place" do
-        # Trigger the behavior that occurs when invalid params are submitted
-        Place.any_instance.stub(:save).and_return(false)
-        post :create, {:place => {}}, valid_session
-        assigns(:place).should be_a_new(Place)
-      end
-
-    end
   end
 
   describe "PUT update" do

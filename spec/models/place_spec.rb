@@ -95,6 +95,27 @@ describe Place do
       it "excludes non events" do
         Place.event.should_not include @place
       end
+
+      it "excludes past events" do
+        @place = FactoryGirl.create :past_event
+        Place.event.should_not include @place
+      end
+    end
+
+    describe "past_event" do
+      it "includes past events" do
+        @place = FactoryGirl.create :past_event
+        Place.past_event.should include @place
+      end
+
+      it "excludes non events" do
+        Place.past_event.should_not include @place
+      end
+
+      it "excludes future events" do
+        @place = FactoryGirl.create :event
+        Place.past_event.should_not include @place
+      end
     end
   end # end scopes
 

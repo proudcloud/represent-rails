@@ -45,6 +45,12 @@ FactoryGirl.define do
       date { 2.days.from_now.to_s }
     end
 
+    trait :past_event_trait do
+      title "Past Event Company"
+      type  "event"
+      date { 1.week.ago.to_s }
+    end
+
     trait :approved_trait do
       approved true
     end
@@ -56,6 +62,7 @@ FactoryGirl.define do
     factory :investor, traits: [:investor_trait]
     factory :consulting, traits: [:consulting_trait]
     factory :event, traits: [:event_trait]
+    factory :past_event, traits: [:past_event_trait]
 
   end
 
