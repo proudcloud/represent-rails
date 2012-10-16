@@ -13,8 +13,10 @@
           = f.input :email, :required => false, :autofocus => true 
           = f.input :password, :required => false 
           = f.input :remember_me, :as => :boolean if devise_mapping.rememberable? 
-
-        .form-actions
-          = f.button :submit, "Sign in", class: "btn" 
+        %hr
+          .pull-right
+            = f.button :submit, "Sign in", class: "btn btn-large" 
+        %br
+        %br
   .span4
 
