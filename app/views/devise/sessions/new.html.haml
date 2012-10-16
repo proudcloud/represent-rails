@@ -1,11 +1,13 @@
 .container
+  %h2
+    = SITE_NAME
   .span4
     &nbsp;
   .span4
-
-     
-    %h2
-      please sign in
+    .v-spacer80 
+    %p
+      %span.lead
+        please sign in ...
 
     .rounded-box
       = simple_form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| 
@@ -14,9 +16,8 @@
           = f.input :password, :required => false 
           = f.input :remember_me, :as => :boolean if devise_mapping.rememberable? 
         %hr
-          .pull-right
-            = f.button :submit, "Sign in", class: "btn btn-large" 
-        %br
+          %center
+            = f.button :submit, "Sign in", class: "btn btn-large span2" 
         %br
   .span4
 
