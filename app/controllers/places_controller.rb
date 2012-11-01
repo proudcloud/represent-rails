@@ -1,4 +1,5 @@
-class PlacesController < InheritedResources::Base
+class PlacesController < ApplicationController
+  inherit_resources
   layout "admin", except: [:map]
   before_filter :authenticate_user!, except: [:map, :create, :new]
   before_filter :set_origin, except: [:map]

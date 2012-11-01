@@ -4,5 +4,8 @@ Represent::Application.routes.draw do
   match "/admin" => "places#admin"
 
   resources :places
+
+  resources :settings
+
   root to: "places#map" 
 end

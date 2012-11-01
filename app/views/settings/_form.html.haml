@@ -1,0 +1,23 @@
+= simple_form_for @setting, html: {class: "form-horizontal"} do |f|
+  %fieldset
+    .control-group
+      %label.control-label{for: "setting_site_name"} Site Name
+      .controls
+        = f.input :site_name, label: false, maxlength: 100, input_html: {class: "input-xlarge"}
+    .control-group
+      %label.control-label{:for => "setting_facebook_page"} Facebook Page
+      .controls
+        = f.input :facebook_page, label: false, input_html: {class: "input-xlarge"} 
+    .control-group
+      %label.control-label{:for => "setting_twitter_handle"} Twitter Handle
+      .controls
+        = f.input :twitter_handle, label: false,  input_html: {class: "input-xlarge"}
+    .control-group
+      %label.control-label{:for => "setting_analytics_snippet"} Analytics Snippet
+      .controls
+        = f.text_area :analytics_snippet, label: false,  input_html: {class: "input-xlarge"}, style: "width: 650px; height: 360px"
+
+  .modal-footer.pull-right
+    = f.submit "Save", class: "btn btn-primary btn-medium"
+    = link_to "Cancel", admin_path, class: "btn btn-medium"
+

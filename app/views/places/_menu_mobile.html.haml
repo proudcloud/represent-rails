@@ -5,5 +5,5 @@
       %a.btn.btn-large.btn-inverse{"data-toggle" => "modal", :href => "#modal_add"} Add
       %a.btn.btn-large{"data-toggle" => "modal", :href => "#modal_info"} Info
     .logo
-      %a{:href => "http://represent.ph/"}
-        %img{:alt => "Represent.ph", :src => "assets/represent.png"}/
+      %a{:href => root_path}
+        %img{:alt => @global_settings.site_name, :src => "assets/represent.png"}
