@@ -18,6 +18,7 @@ end
 
 When /^I sign out$/ do
   page.driver.submit :delete, destroy_user_session_path, {}
+  #click_link "LOG-OUT"
 end
 
 When /^I return to the site$/ do
@@ -41,6 +42,6 @@ end
 
 Then /^I should be signed out$/ do
   visit admin_path
-  page.should have_content "Sign in"
+  page.should have_xpath "//input[@value='Sign in']"
 end
 
