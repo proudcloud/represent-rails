@@ -13,6 +13,8 @@ group :development do
   gem "wirble"
   gem "awesome_print"
   gem "quiet_assets"
+  gem "pry"
+  gem "pry-nav"
 end
 
 group :test do
@@ -34,8 +36,7 @@ group :development, :test do
   gem "thin"
 end
 
-gem "pry"
-gem "pry-nav"
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
 
 gem 'jquery-rails'
 gem "haml"
