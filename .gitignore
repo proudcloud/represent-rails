@@ -18,3 +18,4 @@
 /config/mongoid.yml
 .powrc
 public/assets
+public/system/logos
