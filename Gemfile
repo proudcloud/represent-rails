@@ -51,3 +51,5 @@ gem "devise"
 gem "inherited_resources"
 gem "gon"
 gem 'geocoder'
+
+gem 'kaminari'
