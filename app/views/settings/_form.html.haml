@@ -9,8 +9,8 @@
       .controls
         - if f.object.logo?
           = link_to image_tag(f.object.logo.url(:logo_style)), f.object.logo.url, :target => :blank
-        -# else
-          = image_tag "logo-dummy.png", id: 'logo-dummy'
+        - else
+          = "No logo image uploaded yet." 
         = f.input :logo, as: :file, label: false 
        
     .control-group

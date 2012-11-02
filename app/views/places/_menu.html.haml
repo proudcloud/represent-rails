@@ -1,7 +1,13 @@
 #menu.menu
   .wrapper
     .logo
-      = link_to image_tag(@global_settings.logo.url(:logo_style)), root_path
+      - if @global_settings.logo?
+        = link_to image_tag(@global_settings.logo.url(:logo_style)), root_path
+      - else
+        .v-spacer20
+        = "#{@global_settings.site_name.titleize}"
+        .v-spacer20
+
     .blurb
       This map was made to connect and promote the philippine tech startup community.
       Let's put the Philippines on the map!
