@@ -5,6 +5,15 @@
       .controls
         = f.input :site_name, label: false, placeholder: "i.e. Represent.ph", maxlength: 100, input_html: {class: "input-xlarge"}
     .control-group
+      %label.control-label{:for => "setting_logo"} Logo Image 
+      .controls
+        - if f.object.logo?
+          = link_to image_tag(f.object.logo.url(:logo_style)), f.object.logo.url, :target => :blank
+        -# else
+          = image_tag "logo-dummy.png", id: 'logo-dummy'
+        = f.input :logo, as: :file, label: false 
+       
+    .control-group
       %label.control-label{:for => "setting_facebook_page"} Facebook Page
       .controls
         = f.input :facebook_page, label: false, placeholder: "i.e. http://www.facebook.com/myprofile", input_html: {class: "input-xlarge"} 

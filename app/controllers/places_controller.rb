@@ -4,10 +4,10 @@ class PlacesController < ApplicationController
   before_filter :authenticate_user!, except: [:map, :create, :new]
   before_filter :set_origin, except: [:map]
 
-
  
   def index
     @places = Place.order_by(:title.asc ).all 
+    @setting = Setting.first
   end
 
   def create
