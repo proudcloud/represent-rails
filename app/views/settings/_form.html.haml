@@ -3,15 +3,15 @@
     .control-group
       %label.control-label{for: "setting_site_name"} Site Name
       .controls
-        = f.input :site_name, label: false, maxlength: 100, input_html: {class: "input-xlarge"}
+        = f.input :site_name, label: false, placeholder: "i.e. Represent.ph", maxlength: 100, input_html: {class: "input-xlarge"}
     .control-group
       %label.control-label{:for => "setting_facebook_page"} Facebook Page
       .controls
-        = f.input :facebook_page, label: false, input_html: {class: "input-xlarge"} 
+        = f.input :facebook_page, label: false, placeholder: "i.e. http://www.facebook.com/myprofile", input_html: {class: "input-xlarge"} 
     .control-group
       %label.control-label{:for => "setting_twitter_handle"} Twitter Handle
       .controls
-        = f.input :twitter_handle, label: false,  input_html: {class: "input-xlarge"}
+        = f.input :twitter_handle, label: false, placeholder: "i.e. @myhandle", input_html: {class: "input-xlarge"}
     .control-group
       %label.control-label{:for => "setting_analytics_snippet"} Analytics Snippet
       .controls
