@@ -13,10 +13,16 @@
 
 %ul.nav
   %li
-    = link_to "Places", places_path
+    = link_to places_path do
+      %i.icon-map-marker.icon-white
+      Places
   %li
-    = link_to "Users", "#"
+    = link_to "#" do
+      %i.icon-user.icon-white
+      Users
   %li
-    = link_to "Settings", settings_path
+    = link_to settings_path do
+      %i.icon-cog.icon-white
+      Settings
 
     = javascript_include_tag "form"
