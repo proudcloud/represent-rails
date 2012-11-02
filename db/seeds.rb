@@ -6,7 +6,7 @@ User.create! email: "admin@user.com",
 
 puts "Default user created!"
 
-Setting.create! site_name: "Represent.ph", facebook_page: "", twitter_handle: "@proudcloud", analytics_snippet: " <script type='text/javascript'>
+Setting.create! site_name: "Represent", facebook_page: "", twitter_handle: "@representph", analytics_snippet: " <script type='text/javascript'>
 
                     var _gaq = _gaq || [];
                     _gaq.push(['_setAccount', 'UA-XXXXX-X']);
