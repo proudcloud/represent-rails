@@ -1,3 +1,38 @@
-README
+= RepresentMap on Rails
 
-https://raw.github.com/eternicode/bootstrap-datepicker/master/js/bootstrap-datepicker.js
+represent-map-rails is a fork of represent-map https://github.com/abenzer/represent-map done by @abenzer + @tara + @seanbonner
+
+== Requirements
+MongoDB for the database
+
+== Installing
+
+=== Seeding the user database
+  rake db:seed
+
+== Features
+=== Administrative Backend
+
+  http://yourdomain.com/admin
+
+  username: admin@user.com
+  password: letmein
+
+Global Settings
+Analytics Snippet
+Logo Image
+
+
+Manual Geotags
+Although automatic geocoding still works based on the address entered, this is still not very accurate when locations are outside the United States.
+
+To ensure accurate geotagging, we've added the option to manually enter the latitude and longitude for an entry. If the Latitude and Longitude fields are left blank, automatic geocoding is used.
+
+== Built with Bootstrap
+
+Key gems used
+
+Ruby Geocoder for automatic geocoding
+twitter-bootstrap-rails
+
+
