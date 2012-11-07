@@ -9,7 +9,7 @@
     %th
       Actions
   %tbody
-    - @pendings.each do |place|
+    - @pplaces.pending.each do |place|
       %tr
         %td
           = link_to place.title, place_path(place)
