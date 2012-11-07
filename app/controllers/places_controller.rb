@@ -7,7 +7,7 @@ class PlacesController < ApplicationController
  
   def index
     @places = Place.asc(:title).all.page params[:page] 
-    @pending = @places.pending.page params[:page]
+    @pendings = @places.pending.page params[:page]
     @startups = @places.startup.page params[:page]
     @accelerators = @places.accelerator.page params[:page]
     @incubators = @places.incubator.page params[:page]

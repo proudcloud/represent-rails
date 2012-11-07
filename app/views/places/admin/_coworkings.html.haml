@@ -9,7 +9,7 @@
     %th
       Actions
   %tbody
-    - @places.coworking.each do |place|
+    - @coworkings.each do |place|
       %tr
         %td
           = link_to place.title, place_path(place)
@@ -24,3 +24,6 @@
             %i.icon-pencil
           = link_to place_path(place), confirm: "Are you you sure you want to delete this?", method: :delete do
             %i{class: "icon-remove"}
+
+
+= paginate @coworkings
