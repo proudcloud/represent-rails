@@ -6,7 +6,7 @@ class PlacesController < ApplicationController
 
  
   def index
-    @places = Place.order_by(:title.asc ).all 
+    @places = Place.order_by(:title.asc ).all.page params[:page] 
     @setting = Setting.first
   end
 
