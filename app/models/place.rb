@@ -19,13 +19,13 @@ class Place
 
   field :coordinates, type: Array, default: [0.0,0.0]
 
-  scope :pending, where(approved: false)
-  scope :startup, where(type: "startup")
-  scope :accelerator, where(type: "accelerator")
-  scope :incubator, where(type: "incubator")
-  scope :coworking, where(type: "coworking")
-  scope :investor, where(type: "investor")
-  scope :service, where(type: "service")
+  scope :pending, where(approved: false).asc(:title)
+  scope :startup, where(type: "startup").asc(:title)
+  scope :accelerator, where(type: "accelerator").asc(:title)
+  scope :incubator, where(type: "incubator").asc(:title)
+  scope :coworking, where(type: "coworking").asc(:title)
+  scope :investor, where(type: "investor").asc(:title)
+  scope :service, where(type: "service").asc(:title)
   scope :event, where(type: "event", :date.gte => Date.today).asc(:date)
   scope :past_event, where(type: "event", :date.lt => Date.today).asc(:date)
 

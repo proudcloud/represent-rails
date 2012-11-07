@@ -7,15 +7,6 @@ class PlacesController < ApplicationController
  
   def index
     @places = Place.asc(:title).all 
-    @pendings = @places.pending
-    @startups = @places.startup
-    @accelerators = @places.accelerator
-    @incubators = @places.incubator
-    @coworkings = @places.coworking
-    @investors = @places.investor
-    @services = @places.service
-    @events = @places.event
-    @past_events = @places.past_event
     @setting = Setting.first
   end
 

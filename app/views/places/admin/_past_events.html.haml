@@ -11,7 +11,7 @@
     %th
       Actions
   %tbody
-    - @past_events.each do |place|
+    - @places.past_event.each do |place|
       %tr
         %td
           = link_to place.title, place_path(place)

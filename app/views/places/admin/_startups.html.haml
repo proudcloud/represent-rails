@@ -9,7 +9,7 @@
     %th
       Actions
   %tbody
-    - @startups.each do |place|
+    - @places.startup.each do |place|
       %tr
         %td
           = link_to place.title, place_path(place)
