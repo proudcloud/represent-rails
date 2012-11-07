@@ -6,16 +6,16 @@ class PlacesController < ApplicationController
 
  
   def index
-    @places = Place.asc(:title).all.page params[:page] 
-    @pendings = @places.pending.page params[:page]
-    @startups = @places.startup.page params[:page]
-    @accelerators = @places.accelerator.page params[:page]
-    @incubators = @places.incubator.page params[:page]
-    @coworkings = @places.coworking.page params[:page]
-    @investors = @places.investor.page params[:page]
-    @services = @places.service.page params[:page]
-    @events = @places.event.page params[:page]
-    @past_events = @places.past_event.page params[:page]
+    @places = Place.asc(:title).all 
+    @pendings = @places.pending
+    @startups = @places.startup
+    @accelerators = @places.accelerator
+    @incubators = @places.incubator
+    @coworkings = @places.coworking
+    @investors = @places.investor
+    @services = @places.service
+    @events = @places.event
+    @past_events = @places.past_event
     @setting = Setting.first
   end
 
