@@ -19,15 +19,15 @@ class Place
 
   field :coordinates, type: Array, default: [0.0,0.0]
 
-  scope :pending, where(approved: false).order_by(:title.asc)
-  scope :startup, where(type: "startup").order_by(:title.asc)
-  scope :accelerator, where(type: "accelerator").order_by(:title.asc)
-  scope :incubator, where(type: "incubator").order_by(:title.asc)
-  scope :coworking, where(type: "coworking").order_by(:title.asc)
-  scope :investor, where(type: "investor").order_by(:title.asc)
-  scope :service, where(type: "service").order_by(:title.asc)
-  scope :event, where(type: "event", :date.gte => Date.today).order_by(:date.asc)
-  scope :past_event, where(type: "event", :date.lt => Date.today).order_by(:date.asc)
+  scope :pending, where(approved: false).asc(:title)
+  scope :startup, where(type: "startup").asc(:title)
+  scope :accelerator, where(type: "accelerator").asc(:title)
+  scope :incubator, where(type: "incubator").asc(:title)
+  scope :coworking, where(type: "coworking").asc(:title)
+  scope :investor, where(type: "investor").asc(:title)
+  scope :service, where(type: "service").asc(:title)
+  scope :event, where(type: "event", :date.gte => Date.today).asc(:date)
+  scope :past_event, where(type: "event", :date.lt => Date.today).asc(:date)
 
   validates_presence_of :title, :address, :uri, :description, :owner_name, :owner_email
   validates_presence_of :date, if: :event?
