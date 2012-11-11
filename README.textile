@@ -4,6 +4,7 @@ represent-map-rails is a fork of "represent-map":https://github.com/abenzer/repr
 
 
 h2. Requirements
+
 MongoDB for the database
 
 h2. Installing
@@ -11,23 +12,36 @@ h2. Installing
 * 
 
 h3. Seeding the user database
-  rake db:seed
+
+To create the first admin user.
+
+bq. rake db:seed
 
 h2. Features
+
 h3. Administrative Backend
 
-  http://yourdomain.com/admin
+h4. Load the admin back end and use the sample user name and password.
 
-  username: admin@user.com
-  password: letmein
+bq.  http://yourdomain.com/admin
 
-Global Settings
-Analytics Snippet
-Logo Image
+bq. username: admin@user.com
+bq. password: letmein
+
+h4. Global Settings
+
+h5. Analytics Snippet
+
+h5. Logo Image
+
+h4. Places
+
+h4. Users
 
 h3. Geocoding
 
-Manual Geotags
+h4. Manual Geotags
+
 Although automatic geocoding still works based on the address entered, this is still not very accurate when locations are outside the United States.
 
 To ensure accurate geotagging, we've added the option to manually enter the latitude and longitude for an entry. If the Latitude and Longitude fields are left blank, automatic geocoding is used.
@@ -38,5 +52,6 @@ h2. Key gems used
 
 Ruby Geocoder for automatic geocoding
 twitter-bootstrap-rails
+
 
 
