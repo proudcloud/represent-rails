@@ -1,11 +1,18 @@
 =# link_to image_tag("represent.png"), root_path, :class => 'brand'
 = link_to @global_settings.site_name, root_path, :class => 'brand'
-%ul.navbar-text.pull-right
+%ul.nav.pull-right
   - if user_signed_in?
-    Welcome
-    = "#{current_user.email}!"
-    &nbsp;|&nbsp;
-    = link_to "LOG-OUT", destroy_user_session_path, method: :delete
+    %li
+      .navbar-text
+        Welcome
+        = "#{current_user.email}!"
+    %li
+      = link_to edit_user_registration_path(current_user) do
+        %i.icon-user.icon-white
+        Account 
+    %li
+      = link_to destroy_user_session_path, method: :delete do
+        Logout
     
   - else
     %li
@@ -18,11 +25,12 @@
       Places
   %li
     = link_to "#" do
-      %i.icon-user.icon-white
+      %i.icon-list.icon-white
       Users
   %li
     = link_to settings_path do
       %i.icon-cog.icon-white
       Settings
+
 
     = javascript_include_tag "form"

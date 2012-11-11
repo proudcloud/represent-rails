@@ -1,0 +1,32 @@
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { class: "form-horizontal", :method => :put }) do |f| 
+  .pull-right
+    %button#submit-it.btn.btn-primary.btn-medium
+      %span
+        Update
+  .page-header
+    %h2
+      = "Edit #{resource_name.to_s.humanize}"
+  
+  %fieldset 
+    .control-group
+      %label Email
+      = f.input :email, :required => true, :autofocus => true, label: false
+    .control-group
+      %label New Password 
+      = f.input :password, :autocomplete => "off", :required => false, label: false
+      %p.help-block
+        %small
+          Leave it blank if you don't want to change it.
+    .control-group
+      %label Confirm Password 
+      = f.input :password_confirmation, :required => false, label: false
+    .control-group
+      %label Current Password 
+      = f.input :current_password, :required => true, label: false
+      %p.help-block
+        %small
+          We need your current password to confirm your changes.
+
+
+
+
