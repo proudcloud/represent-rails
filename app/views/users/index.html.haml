@@ -1,0 +1,37 @@
+.page-header
+  .pull-right
+    = link_to new_user_registration_path do
+      %button.btn.btn-info
+        Add a new user 
+  %h2
+    Users 
+
+  .row
+    %table.table.table-striped
+      %thead
+        %th
+          Email 
+        %th
+          Sign ins 
+        %th
+          Last Seen 
+        %th
+          Actions
+      %tbody
+        - @users.each do |user|
+          %tr
+            %td
+              = link_to user.email, user_path(user)
+            %td
+              = user.sign_in_count
+            %td
+              = user.last_sign_in_at
+            %td
+              = link_to user_path(user) do
+                %i.icon-search
+              = link_to edit_user_registration_path(user) do
+                %i.icon-pencil
+              = link_to user_path(user), confirm: "Are you you sure you want to delete this?", method: :delete do
+                %i{class: "icon-remove"}
+      
+
