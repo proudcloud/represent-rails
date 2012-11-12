@@ -5,7 +5,7 @@ Represent::Application.routes.draw do
 
   resources :places
   resources :settings
-  resources :users, :only => [:show,:index]
+  resources :users, :only => [:show,:index,:new,:create]
 
   root to: "places#map" 
 end

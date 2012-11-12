@@ -1,6 +1,6 @@
 .page-header
   .pull-right
-    = link_to new_user_registration_path do
+    = link_to new_user_path do
       %button.btn.btn-info
         Add a new user 
   %h2
@@ -30,7 +30,7 @@
             %i.icon-search
           = link_to edit_user_registration_path(user) do
             %i.icon-pencil
-          = link_to user_path(user), confirm: "Are you you sure you want to delete this?", method: :delete do
+          = link_to user_registration_path(user), confirm: "Are you you sure you want to delete this?", method: :delete do
             %i{class: "icon-remove"}
       
 

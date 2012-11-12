@@ -41,6 +41,12 @@ class User
   ## Token authenticatable
   # field :authentication_token, :type => String
 
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmed_at, :auth_type
+  attr_accessor :editing_user
+
+  def should_validate?
+    editing_user 
+  end
 
 
 end
