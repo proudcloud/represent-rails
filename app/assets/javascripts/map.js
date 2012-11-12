@@ -99,9 +99,9 @@ function initialize() {
 
   // set map options
   var myOptions = {
-    zoom: 6,
+    //zoom: 6,
     //minZoom: 10,
-    center: new google.maps.LatLng(13,124), // Adjust to center map
+    center: new google.maps.LatLng(12,124), // Adjust to center map
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     panControl: false,
     streetViewControl: false,
@@ -113,8 +113,18 @@ function initialize() {
       position: google.maps.ControlPosition.TOP_LEFT
     }
   };
+
   map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-  zoomLevel = map.getZoom();
+  //zoomLevel = map.getZoom();
+
+   var geocoder = new google.maps.Geocoder();
+
+   geocoder.geocode( { 'address': 'philippines'}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
+        map.fitBounds(results[0].geometry.viewport);
+      }
+    });
 
   // prepare infowindow
   infowindow = new google.maps.InfoWindow({

@@ -21,9 +21,11 @@
   %body
     .container
       = render "layouts/messages"
-    #map_canvas
-    = render "menu"
-    = render "menu_mobile"
+      .canvas
+        #map_canvas
+      .sidebar
+        = render "menu"
+        = render "menu_mobile"
     = render "more_info"
     = render "modal_form"
 

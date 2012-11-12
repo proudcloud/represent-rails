@@ -25,9 +25,10 @@ form
 }
 
 /* google maps */
-html, body, #map_canvas 
+html, body, .container, .canvas, #map_canvas
 {
   margin: 0;
+  margin-right: 250px;
   padding: 0;
   height: 100%;
   width: 100%;
