@@ -1,0 +1,20 @@
+= simple_form_for(@user, :html => { class: "form-horizontal" }) do |f|
+  .pull-right
+    %button#submit-it.btn.btn-primary.btn-medium
+      %span
+        Save 
+  
+  %fieldset 
+    .control-group
+      %label Email
+      = f.input :email, :required => true, label: false
+    .control-group
+      %label New Password 
+      = f.input :password, :autocomplete => "off", :required => false, label: false
+      %p.help-block
+        %small
+          Leave it blank if you don't want to change it.
+    .control-group
+      %label Confirm Password 
+      = f.input :password_confirmation, :required => false, label: false
+

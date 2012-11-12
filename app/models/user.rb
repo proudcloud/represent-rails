@@ -3,7 +3,7 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, 
+  devise :database_authenticatable, 
          :recoverable, :rememberable, :trackable, :validatable
 
   ## Database authenticatable
@@ -44,9 +44,6 @@ class User
   attr_accessible :email, :password, :password_confirmation, :remember_me, :confirmed_at, :auth_type
   attr_accessor :editing_user
 
-  def should_validate?
-    editing_user 
-  end
 
 
 end

@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  inherit_resources
   layout "admin"
 
   before_filter :authenticate_user!
@@ -16,13 +17,32 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user.editing_user = false 
     @user = User.new(params[:user])
     if @user.save
       redirect_to users_url, :notice => "User created."
     else
       render :action => 'new'
     end
+  end
+
+  def update
+    @user = User.find params[:id]
+
+    password_blank = params[:user][:password].blank?
+
+    if password_blank
+      params[:user][:password] = @user.password
+      params[:user][:password_confirmation] = @user.password_confirmation
+    end
+
+    if @user.update_attributes! params[:user]
+
+      sign_in @user, bypass: true
+
+      redirect_to users_path, notice: "User updated"
+
+    end
+
   end
 
 end
