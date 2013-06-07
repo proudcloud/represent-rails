@@ -37,7 +37,7 @@ When /^I sign in with invalid credentials$/ do
 end
 
 Then /^I should be signed in$/ do
-  page.should have_content "LOG-OUT"
+  page.should have_content "Logout"
 end
 
 Then /^I should be signed out$/ do
